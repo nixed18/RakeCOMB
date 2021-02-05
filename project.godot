@@ -1,0 +1,43 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[  ]
+_global_script_class_icons={
+
+}
+
+[application]
+
+config/name="RakeCOMB"
+run/main_scene="res://main_GUI.tscn"
+boot_splash/image="res://combicon2.png"
+boot_splash/fullsize=false
+boot_splash/bg_color=Color( 1, 1, 1, 1 )
+config/icon="res://combicon2.png"
+config/windows_native_icon="res://combicon2.ico"
+
+[autoload]
+
+httpman="*res://scripts/singletons/httpman.gd"
+respman="*res://scripts/singletons/respman.gd"
+parser="*res://scripts/singletons/parser.gd"
+frontend="*res://scripts/singletons/frontend.gd"
+transition="*res://transition.tscn"
+popups="*res://popups.tscn"
+httppost_formatter="*res://scripts/singletons/httppost_formatter.gd"
+
+[network]
+
+limits/debugger_stdout/max_chars_per_second=204800
+
+[rendering]
+
+environment/default_clear_color=Color( 0.980392, 0.560784, 0.819608, 1 )
+environment/default_environment="res://default_env.tres"

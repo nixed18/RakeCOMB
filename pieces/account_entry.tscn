@@ -1,0 +1,349 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://scripts/ui/pieces/menu_Button.gd" type="Script" id=1]
+[ext_resource path="res://scripts/ui/pieces/account_entry.gd" type="Script" id=2]
+[ext_resource path="res://pieces/account_entry_base_panel.tres" type="StyleBox" id=3]
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0, 0, 0, 0.219608 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://fonts/Roboto-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 15
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.972549, 0.356863, 0.737255, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=6]
+content_margin_top = 5.0
+bg_color = Color( 0.96875, 0.261108, 0.698825, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=7]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color( 0, 0, 0, 0.0941176 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="DynamicFont" id=12]
+size = 14
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+content_margin_left = 20.0
+content_margin_right = 20.0
+content_margin_top = 10.0
+content_margin_bottom = 3.0
+bg_color = Color( 0, 0, 0, 0.0941176 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=13]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color( 0, 0, 0, 0.156863 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="DynamicFontData" id=9]
+font_path = "res://fonts/Roboto-Medium.ttf"
+
+[sub_resource type="DynamicFont" id=10]
+size = 14
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 9 )
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[node name="account_entry" type="PanelContainer"]
+margin_right = 800.0
+margin_bottom = 77.0
+rect_min_size = Vector2( 800, 0 )
+custom_styles/panel = ExtResource( 3 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 790.0
+margin_bottom = 67.0
+custom_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 780.0
+margin_bottom = 28.0
+alignment = 1
+
+[node name="pubkey_entry" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+margin_left = 13.0
+margin_right = 617.0
+margin_bottom = 28.0
+focus_mode = 0
+custom_styles/read_only = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color_uneditable = Color( 1, 1, 1, 0.937255 )
+text = "EC8741e04541E12BEFC0717A0A73EBF125B9B0F482235B263D09834AA904B7643"
+editable = false
+expand_to_text_length = true
+
+[node name="balance_entry" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+margin_left = 621.0
+margin_right = 767.0
+margin_bottom = 28.0
+focus_mode = 0
+custom_styles/read_only = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color_uneditable = Color( 1, 1, 1, 0.937255 )
+text = "0.00000000 COMB"
+editable = false
+expand_to_text_length = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 38.0
+margin_right = 780.0
+margin_bottom = 57.0
+alignment = 1
+
+[node name="pay_button" type="Button" parent="VBoxContainer/HBoxContainer2"]
+visible = false
+margin_left = 215.0
+margin_right = 315.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 100, 0 )
+focus_mode = 0
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 1, 1, 1, 0.937255 )
+enabled_focus_mode = 0
+text = "Send COMB"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+my_url = "/sign/from/"
+
+[node name="stealth_button" type="Button" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 321.0
+margin_right = 458.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 100, 0 )
+focus_mode = 0
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 1, 1, 1, 0.937255 )
+enabled_focus_mode = 0
+text = "Stealth Addresses"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+my_url = "/wallet/stealth/"
+
+[node name="active_spend_button" type="Button" parent="VBoxContainer/HBoxContainer2"]
+visible = false
+margin_left = 408.0
+margin_right = 512.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 100, 0 )
+focus_mode = 0
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 1, 1, 1, 0.937255 )
+enabled_focus_mode = 0
+text = "Active Spend"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+my_url = "\"null\""
+
+[node name="active_spend_box" type="PanelContainer" parent="VBoxContainer"]
+visible = false
+margin_top = 67.0
+margin_right = 780.0
+margin_bottom = 131.0
+custom_styles/panel = SubResource( 8 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/active_spend_box"]
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 760.0
+margin_bottom = 61.0
+
+[node name="tx_id_button" type="Button" parent="VBoxContainer/active_spend_box/VBoxContainer"]
+margin_right = 740.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 100, 0 )
+focus_mode = 0
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 0.937255 )
+enabled_focus_mode = 0
+text = "View TX Data - F0D0B91BC81EE735D38C988E2A650526FD90C8D6B3972F9E3F9B5DFFED462179"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+my_url = "/sign/pay/"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/active_spend_box/VBoxContainer"]
+margin_top = 24.0
+margin_right = 740.0
+margin_bottom = 51.0
+custom_constants/separation = -5
+
+[node name="status_box" type="HBoxContainer" parent="VBoxContainer/active_spend_box/VBoxContainer/VBoxContainer"]
+margin_right = 740.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 0, 27 )
+alignment = 1
+
+[node name="status_label" type="Label" parent="VBoxContainer/active_spend_box/VBoxContainer/VBoxContainer/status_box"]
+margin_left = 310.0
+margin_top = 5.0
+margin_right = 355.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 10 )
+text = "Status:"
+
+[node name="status_entry" type="Label" parent="VBoxContainer/active_spend_box/VBoxContainer/VBoxContainer/status_box"]
+margin_left = 359.0
+margin_top = 5.0
+margin_right = 429.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 10 )
+text = "Completed"
+
+[node name="source_box" type="HBoxContainer" parent="VBoxContainer/active_spend_box/VBoxContainer/VBoxContainer"]
+visible = false
+margin_top = 22.0
+margin_right = 740.0
+margin_bottom = 49.0
+alignment = 1
+
+[node name="source_address" type="Label" parent="VBoxContainer/active_spend_box/VBoxContainer/VBoxContainer/source_box"]
+margin_left = 70.0
+margin_top = 5.0
+margin_right = 173.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 10 )
+text = "Source Address:"
+
+[node name="source_entry" type="LineEdit" parent="VBoxContainer/active_spend_box/VBoxContainer/VBoxContainer/source_box"]
+margin_left = 177.0
+margin_right = 670.0
+margin_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+custom_styles/read_only = SubResource( 11 )
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color_uneditable = Color( 1, 1, 1, 1 )
+text = " bc1qrq2aer8xhd20e4rd6wwytv0s2uu3mmlav9c4rnc09r8ptm7yxm7sc5cn4y"
+align = 1
+editable = false
+expand_to_text_length = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="block_box" type="HBoxContainer" parent="VBoxContainer/active_spend_box/VBoxContainer/VBoxContainer"]
+visible = false
+margin_top = 44.0
+margin_right = 740.0
+margin_bottom = 71.0
+custom_constants/separation = 0
+alignment = 1
+
+[node name="block_height" type="Label" parent="VBoxContainer/active_spend_box/VBoxContainer/VBoxContainer/block_box"]
+margin_left = 297.0
+margin_top = 5.0
+margin_right = 382.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 10 )
+text = "Block Height:"
+
+[node name="block_entry" type="LineEdit" parent="VBoxContainer/active_spend_box/VBoxContainer/VBoxContainer/block_box"]
+margin_left = 382.0
+margin_right = 443.0
+margin_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+custom_styles/read_only = SubResource( 11 )
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color_uneditable = Color( 1, 1, 1, 1 )
+text = "667925"
+align = 1
+editable = false
+expand_to_text_length = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 790.0
+margin_bottom = 70.0
+color = Color( 0, 0, 0, 0.262745 )
+[connection signal="menu_button_pressed" from="VBoxContainer/HBoxContainer2/pay_button" to="." method="_on_pay_button_menu_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/pay_button" to="VBoxContainer/HBoxContainer2/pay_button" method="_on_Button_pressed"]
+[connection signal="menu_button_pressed" from="VBoxContainer/HBoxContainer2/stealth_button" to="." method="_on_stealth_button_menu_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/stealth_button" to="VBoxContainer/HBoxContainer2/stealth_button" method="_on_Button_pressed"]
+[connection signal="menu_button_pressed" from="VBoxContainer/HBoxContainer2/active_spend_button" to="." method="_on_active_spend_button_menu_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/active_spend_button" to="VBoxContainer/HBoxContainer2/active_spend_button" method="_on_Button_pressed"]
+[connection signal="menu_button_pressed" from="VBoxContainer/active_spend_box/VBoxContainer/tx_id_button" to="." method="_on_tx_id_button_menu_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/active_spend_box/VBoxContainer/tx_id_button" to="VBoxContainer/active_spend_box/VBoxContainer/tx_id_button" method="_on_Button_pressed"]
