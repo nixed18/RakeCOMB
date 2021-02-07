@@ -2,10 +2,10 @@ extends Control
 
 signal response(response)
 
-onready var title = $Panel/Panel/title
-onready var main = $Panel/response_text
-onready var yes_button = $Panel/HBoxContainer/yes_button
-onready var no_button = $Panel/HBoxContainer/no_button
+onready var title = $Panel/VBoxContainer/Panel/title
+onready var main = $Panel/VBoxContainer/HBoxContainer2/response_text
+onready var yes_button = $Panel/VBoxContainer/HBoxContainer/yes_button
+onready var no_button = $Panel/VBoxContainer/HBoxContainer/no_button
 
 
 # Called when the node enters the scene tree for the first time.

@@ -11,7 +11,6 @@ func _ready():
 	frontend.connect("load_initiated", self, "_on_load_initiated")
 
 func _on_load_initiated(url, content):
-	print(url)
 	content_panel.display(url, content)
 
 
@@ -59,4 +58,16 @@ func _on_import_import_requested(url, other_data):
 
 #Secret Buttons
 func _on_secret_sweep_initiated(url, ext):
+	frontend.go_to(url, ext)
+
+
+func _on_confirm_button_menu_button_pressed(url, other_data):
+	frontend.go_to(url, other_data)
+
+#Change_add
+func _on_change_add_account_button_pressed(url, ext):
+	frontend.go_to(url, ext)
+
+
+func _on_multipay_account_button_pressed(url, ext):
 	frontend.go_to(url, ext)

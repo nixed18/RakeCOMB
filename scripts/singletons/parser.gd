@@ -2,6 +2,7 @@ extends Node
 
 var letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 var numbers = ["0","1","2","3","4","5","6","7","8","9"]
+var hex = ["0","1","2","3","4","5","6","7","8","9", "A", "B", "C", "D", "E", "F"]
 
 var homepage_replace = [
 	[" Fingerprint of commitment set of size ", "/"],
@@ -32,6 +33,14 @@ func is_letter(string):
 		i+=1
 	return true
 		
+func is_number(string):
+	var i = 0
+	while i < string.length():
+		if not numbers.has(string[i]):
+			return false
+		i+=1
+	return true
+		
 func is_basic(string):
 	var i = 0
 	while i < string.length():
@@ -48,6 +57,60 @@ func make_basic(string):
 		else:
 			i+=1
 	return string
+	
+func is_pubkey(string):
+	var i = 0
+	while i < string.length():
+		if not hex.has(string[i]):
+			return false
+		i+=1
+	if i != 64:
+		return false
+	return true
+	
+func is_comb(string):
+	if not is_number(string):
+		return false
+	if int(string) > 99999999:
+		return false
+	return true
+	
+func u16dectohex(i):
+	if i < 10:
+		return str(i)
+	elif i == 10:
+		return "A"
+	elif i == 11:
+		return "B"
+	elif i == 12:
+		return "C"
+	elif i == 13:
+		return "D"
+	elif i == 14:
+		return "E"
+	elif i == 15:
+		return "F"
+
+	
+func dec2hex_string(input):
+	input = int(input)
+	var run = true
+	var output = String()
+	var remainders = []
+	while input > 0:
+		#yield(get_tree().create_timer(0.5),"timeout")
+		var x = input/16.0
+		var y = floor(x)
+		#print([input, x, y, (x-y)*16])
+		remainders.push_front((x-y)*16)
+		input = y
+	#return remainders
+			
+	for r in remainders:
+		output+=u16dectohex(r)
+			
+	return output
+	pass
 	
 
 func strip_to_old(target, data):
@@ -110,6 +173,14 @@ func strip_to(target, data):
 	
 	#print("!!!!!", my_string)
 	return my_string
+	
+func multipay_get_pubchange(ext): 
+	#pub/change/variable
+	var values = [String(), String()]
+	values[0] = pull_to("/", ext)
+	ext = strip_to("/", ext)
+	values[1] = pull_to("/", ext)
+	return values
 	
 func pull_to(target, data):
 	var input = data
@@ -282,13 +353,14 @@ func wallet_protocol(data):
 	var output = data
 	
 	#Array of wallet info.
-	var values = [] #[pubkey, balance, pay_bool, [[active_spend_url, active_spend_id], [btc_address_that_spent, block_number]]]
+	var values = [] 
 	
 	var run = true
 	while run:
 		if "<tt>" in output:
 			#Pull pubkey and balance
 			#print("~~~~~~~")
+			#[pubkey, balance, pay_bool, [[active_spend_url, active_spend_id], [btc_address_that_spent, block_number]]]
 			var account_info = [null, null, false, [[String(), String()], [String(), String()]]]
 			output = strip_to("<tt>", output)
 			account_info[0] = pull_to("<", output)
@@ -357,7 +429,8 @@ func wallet_protocol(data):
 					remaining = strip_to("at height ", remaining)
 					account_info[3][1][1] = pull_to("<", remaining)
 				run = false
-				
+			
+			#[pubkey, balance, pay_bool, [[active_spend_url, active_spend_id], [btc_address_that_spent, block_number]]]
 			values.append(account_info)
 			
 		else:
@@ -442,5 +515,106 @@ func import_protocol(data):
 		
 	return values
 		 
+func txsign_protocol(data):
+	yield(get_tree().create_timer(0.016), "timeout")
+	
+	var values = [String(), String(), [], String()] #txid, dest, address_array, ext
+	
+	var output = data
+	
+	output = strip_to("txid: ", output)
+	values[0] = pull_to("</h1>", output)
+	output = strip_to("<tt>", output)
+	values[1] = pull_to("</tt>", output)
+	
+	while "<li>" in output:
+		output = strip_to("<li>", output)
+		values[2].append(pull_to(" ", output))
 		
+	output = strip_to("/tx/recv/", output)
+	values[3] = pull_to("\"", output)
+	
+	return values
+	
+func txrecv_protocol(data):
+	yield(get_tree().create_timer(0.016), "timeout")
+	#Strip for debug?
+	var value = String()
+	
+	var output = data
+	output=strip_to("<pre>", output)
+	value=pull_to("</pre>", output)
+	return value
+		
+func change_protocol(data):
+	yield(get_tree().create_timer(0.016), "timeout")
+	var output = data
+	var values = []
 
+	output = strip_to("<br /><", output)
+	if output[0] == "h":
+		#No suitable
+
+		return null
+	elif output[0] == "u":
+		#Suitable
+		var run = true
+		while run:
+			var entry_data = [String(), String()] #pubkey, ext
+			output = strip_to("href=\"", output)
+			if output.length() == 0:
+				run = false
+			else:
+				output = strip_to("pay/", output)
+				entry_data[1] = pull_to("\"", output)
+				output = strip_to("/", output)
+				entry_data[0] = pull_to("/", output)
+				values.append(entry_data)
+		return (values)
+
+		pass
+	
+func multipay_protocol(data):
+	yield(get_tree().create_timer(0.016), "timeout")
+	var output = data
+	var values = [String(), String(), [], String()]#pubkey, change, recv_array, do_pay_url
+	
+	#pubkey
+	output = strip_to("address ", output)
+	values[0] = pull_to("</h1>", output)
+	
+	#recv_array
+	output = strip_to("</script>", output)
+	var working = pull_to("<h1>", output)
+	var run = true
+	while run:
+		working = strip_to("Pay to ", working)
+		if working.empty():
+			run = false
+		else:
+			var info = [String(), String()]
+			info[0] = pull_to(":", working)
+			working = strip_to(": ", working)
+			info[1] = pull_to(" ", working)
+			values[2].append(info)
+	
+	#change
+	output = strip_to("<tt>", output)
+	values[1] = pull_to("</tt>", output)
+	
+	#url
+	output = strip_to("/sign/pay/", output)
+	output = strip_to("/", output)
+	values[3] = pull_to("\"", output)
+	
+	return values
+	
+func multipaydata_protocol(data):
+	yield(get_tree().create_timer(0.016), "timeout")
+	var output = data
+	var values = String()
+	if "loaded stack" in output:
+		output = strip_to("/sign/multipay/", output)
+		values = pull_to("\"", output)
+		return values
+		

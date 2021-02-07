@@ -53,7 +53,6 @@ func burn_sweep():
 	if not mine:
 		burn_full()
 	
-	
 func burn_mine():
 	mine_label.hide()
 	mine_entry.hide()

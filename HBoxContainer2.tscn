@@ -1,0 +1,109 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/ui/pieces/menu_Button.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.972549, 0.356863, 0.737255, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_top = 5.0
+bg_color = Color( 0.96875, 0.261108, 0.698825, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color( 0, 0, 0, 0.0941176 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://fonts/Roboto-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+size = 14
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 4 )
+
+[node name="HBoxContainer2" type="HBoxContainer"]
+margin_top = 38.0
+margin_right = 780.0
+margin_bottom = 57.0
+alignment = 1
+
+[node name="pay_button" type="Button" parent="."]
+visible = false
+margin_left = 269.0
+margin_right = 369.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 100, 0 )
+focus_mode = 0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 0.937255 )
+enabled_focus_mode = 0
+text = "Send COMB"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+my_url = "/sign/from/"
+
+[node name="stealth_button" type="Button" parent="."]
+margin_left = 321.0
+margin_right = 458.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 100, 0 )
+focus_mode = 0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 0.937255 )
+enabled_focus_mode = 0
+text = "Stealth Addresses"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+my_url = "/wallet/stealth/"
+
+[node name="active_spend_button" type="Button" parent="."]
+visible = false
+margin_left = 408.0
+margin_right = 512.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 100, 0 )
+focus_mode = 0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 0.937255 )
+enabled_focus_mode = 0
+text = "Active Spend"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+my_url = "\"null\""
+[connection signal="pressed" from="pay_button" to="pay_button" method="_on_Button_pressed"]
+[connection signal="pressed" from="stealth_button" to="stealth_button" method="_on_Button_pressed"]
+[connection signal="pressed" from="active_spend_button" to="active_spend_button" method="_on_Button_pressed"]

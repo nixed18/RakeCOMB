@@ -1,7 +1,7 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://pieces/content_button.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scripts/ui/pieces/line_Popup.gd" type="Script" id=2]
+[ext_resource path="res://scripts/ui/pieces/recv_Popup.gd" type="Script" id=1]
+[ext_resource path="res://pieces/content_button.tscn" type="PackedScene" id=2]
 [ext_resource path="res://pieces/_lineedit_bg.tscn" type="PackedScene" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -81,10 +81,19 @@ use_mipmaps = true
 use_filter = true
 font_data = SubResource( 11 )
 
-[node name="line_Popup" type="Control"]
+[sub_resource type="DynamicFontData" id=13]
+font_path = "res://fonts/Roboto-Medium.ttf"
+
+[sub_resource type="DynamicFont" id=14]
+size = 14
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 13 )
+
+[node name="recv_Popup" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -95,10 +104,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -230.0
-margin_top = -71.5
-margin_right = 230.0
-margin_bottom = 71.5
+margin_left = -376.0
+margin_top = -66.0
+margin_right = 377.0
+margin_bottom = 81.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_group_": true,
@@ -118,14 +127,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -39.0
-margin_top = -8.5
-margin_right = 39.0
-margin_bottom = 10.5
+margin_left = -117.0
+margin_top = -7.5
+margin_right = 117.0
+margin_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 custom_fonts/font = SubResource( 4 )
-text = "Warning!"
+text = "Enter Receiver Information"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -161,22 +170,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="yes_button" parent="Panel/HBoxContainer" instance=ExtResource( 1 )]
+[node name="yes_button" parent="Panel/HBoxContainer" instance=ExtResource( 2 )]
 custom_styles/hover = SubResource( 6 )
 custom_styles/pressed = SubResource( 7 )
 custom_styles/normal = SubResource( 8 )
 custom_fonts/font = SubResource( 10 )
-text = "YES"
+text = "Confirm"
 my_url = "true"
 
-[node name="no_button" parent="Panel/HBoxContainer" instance=ExtResource( 1 )]
+[node name="no_button" parent="Panel/HBoxContainer" instance=ExtResource( 2 )]
 margin_left = 110.0
 margin_right = 210.0
 custom_styles/hover = SubResource( 6 )
 custom_styles/pressed = SubResource( 7 )
 custom_styles/normal = SubResource( 8 )
 custom_fonts/font = SubResource( 10 )
-text = "NO"
+text = "Cancel"
 my_url = "false"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
@@ -184,41 +193,130 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -160.0
-margin_top = -30.5
-margin_right = 159.0
-margin_bottom = 23.5
+margin_left = -322.0
+margin_top = -33.5
+margin_right = 322.0
+margin_bottom = 22.5
 grow_horizontal = 2
 grow_vertical = 2
-custom_constants/separation = 10
+custom_constants/separation = 8
 alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="response_text" type="Label" parent="Panel/VBoxContainer"]
-margin_right = 319.0
-margin_bottom = 19.0
-grow_horizontal = 2
-grow_vertical = 2
-custom_fonts/font = SubResource( 12 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Text Goes Here!"
-align = 1
-autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
-margin_top = 29.0
-margin_right = 319.0
-margin_bottom = 54.0
+margin_top = 1.0
+margin_right = 644.0
+margin_bottom = 24.0
+custom_constants/separation = 10
 alignment = 1
 
-[node name="line_entry" parent="Panel/VBoxContainer/HBoxContainer" instance=ExtResource( 3 )]
-margin_left = 34.0
-margin_right = 284.0
-rect_min_size = Vector2( 250, 0 )
+[node name="response_text" type="Label" parent="Panel/VBoxContainer/HBoxContainer"]
+margin_top = 2.0
+margin_right = 64.0
+margin_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Address:"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="address_line" parent="Panel/VBoxContainer/HBoxContainer" instance=ExtResource( 3 )]
+margin_left = 74.0
+margin_right = 644.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 570, 0 )
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+max_length = 64
+expand_to_text_length = true
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Panel/VBoxContainer"]
+margin_top = 32.0
+margin_right = 644.0
+margin_bottom = 55.0
+alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer4"]
+margin_left = 166.0
+margin_right = 327.0
+margin_bottom = 23.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="response_text" type="Label" parent="Panel/VBoxContainer/HBoxContainer4/HBoxContainer3"]
+margin_top = 2.0
+margin_right = 61.0
+margin_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Amount:"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="comb_line" parent="Panel/VBoxContainer/HBoxContainer4/HBoxContainer3" instance=ExtResource( 3 )]
+margin_left = 71.0
+margin_right = 161.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 90, 0 )
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "0"
+max_length = 8
+expand_to_text_length = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer4"]
+margin_left = 331.0
+margin_right = 429.0
+margin_bottom = 23.0
+alignment = 1
+
+[node name="response_text" type="Label" parent="Panel/VBoxContainer/HBoxContainer4/HBoxContainer2"]
+margin_top = 2.0
+margin_right = 4.0
+margin_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "."
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="nats_line" parent="Panel/VBoxContainer/HBoxContainer4/HBoxContainer2" instance=ExtResource( 3 )]
+margin_left = 8.0
+margin_right = 98.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 90, 0 )
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "00000000"
+max_length = 8
+
+[node name="response_text2" type="Label" parent="Panel/VBoxContainer/HBoxContainer4"]
+margin_left = 433.0
+margin_top = 2.0
+margin_right = 478.0
+margin_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "COMB"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="menu_button_pressed" from="Panel/HBoxContainer/yes_button" to="." method="_on_yes_button_menu_button_pressed"]
 [connection signal="menu_button_pressed" from="Panel/HBoxContainer/no_button" to="." method="_on_no_button_menu_button_pressed"]

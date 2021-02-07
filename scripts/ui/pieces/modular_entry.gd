@@ -1,19 +1,28 @@
 extends PanelContainer
 
-signal account_button_pressed(url, ext)
-
 var dark_panel = preload("res://pieces/account_entry_dark_panel.tres")
 var dark_colour = Color( 0.88, 0.88, 0.88, 0.5 )
 
+#signal sweep_button_pressed(url, ext)
+signal account_button_pressed(url, ext)
+
 var pubkey = String()
 var burnt = false
+var sweep = true
+var mine = true
 
-onready var pubkey_entry = $VBoxContainer/HBoxContainer/pubkey_entry
-onready var balance_entry = $VBoxContainer/HBoxContainer/balance_entry
+onready var pubkey_entry = $VBoxContainer/always/pubkey_entry
+onready var balance_entry = $VBoxContainer/always/balance_entry
 
-onready var pay_button = $VBoxContainer/HBoxContainer2/pay_button
-onready var stealth_button = $VBoxContainer/HBoxContainer2/stealth_button
-onready var active_spend_button = $VBoxContainer/HBoxContainer2/active_spend_button
+onready var mine_box = $VBoxContainer/mine_box
+onready var mine_label = $VBoxContainer/mine_box/label
+onready var mine_entry = $VBoxContainer/mine_box/mine_entry
+onready var sweep_button = $VBoxContainer/mine_box/sweep_button
+
+onready var wallet_box = $VBoxContainer/wallet_box
+onready var pay_button = $VBoxContainer/wallet_box/pay_button
+onready var stealth_button = $VBoxContainer/wallet_box/stealth_button
+onready var active_spend_button = $VBoxContainer/wallet_box/active_spend_button
 onready var active_spend_box = $VBoxContainer/active_spend_box
 
 onready var tx_id_button = $VBoxContainer/active_spend_box/VBoxContainer/tx_id_button
@@ -27,12 +36,18 @@ onready var block_box = $VBoxContainer/active_spend_box/VBoxContainer/VBoxContai
 onready var block_label = $VBoxContainer/active_spend_box/VBoxContainer/VBoxContainer/block_box/block_height
 onready var block_entry = $VBoxContainer/active_spend_box/VBoxContainer/VBoxContainer/block_box/block_entry
 
+onready var change_box = $VBoxContainer/change_box
+onready var change_button = $VBoxContainer/change_box/change_button
+
+
+
+# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-
-#[pubkey, balance, pay_bool, [[active_spend_url, active_spend_id], [btc_address_that_spent, block_number]]]
-func setup(content):
+#WALLET
+func setup_for_wallet(content):
+	wallet_box.show()
 	#content is just the pubkey
 	pubkey = content
 	var balance = accounts.get_info(pubkey, "balance")
@@ -88,17 +103,25 @@ func setup(content):
 			source_box.show()
 			block_box.show()
 			
+	hide()
+	show()
+			
+#CHANGE ADD
 func setup_for_change_add(content):
 	#[pubkey, other_data]
 	pubkey = content[0]
 	pubkey_entry.text = pubkey
 	balance_entry.text = accounts.get_info(pubkey, "balance")
 	
-	stealth_button.text = "Select this account as the Change Address"
-	stealth_button.my_url = "/sign/multipay/"
-	stealth_button.other_data=content[1]
+	change_button.other_data=content[1]
+	change_box.show()
 	pass
 	
+func setup_for_multipay(content):
+	#[pubkey, amount]
+	pubkey = content[0]
+	pubkey_entry.text = pubkey
+	balance_entry.text = content[1]
 	
 	#BTC without the active spend
 			
@@ -121,21 +144,70 @@ func burn():
 	block_label.set("custom_colors/font_color", dark_colour)
 	block_entry.set("custom_colors/font_color_uneditable", dark_colour)
 
+#[comb_address, balance, mine_address, sweep_link]
+func setup_for_stealth(content):
+	mine_box.show()
+	pubkey_entry.text = content[0]
+	balance_entry.text = content[1]+" COMB"
+	if content[2] != "":
+		mine_entry.text = content[2]
+	else:
+		burn_mine()
+	if content[3] != "":
+		sweep_button.other_data = content[3]
+	else:
+		burn_sweep()
+	
+	hide()
+	show()
+	pass
+	
+func burn_full():
+	mine_box.hide()
+	set("custom_styles/panel", dark_panel)
+	pubkey_entry.set("custom_colors/font_color_uneditable", dark_colour)
+	balance_entry.set("custom_colors/font_color_uneditable", dark_colour)
+	hide()
+	show()
+	
+func burn_sweep():
+	balance_entry.text = "0.00000000 COMB"
+	sweep_button.hide()
+	sweep = false
+	if not mine:
+		burn_full()
+	
+	
+func burn_mine():
+	mine_label.hide()
+	mine_entry.hide()
+	mine = false
+	if not sweep:
+		burn_sweep()
+	pass
+	
+	
+func _on_pay_button_menu_button_pressed(url, other_data):
+	emit_signal("account_button_pressed", url, pubkey)
+
+func _on_stealth_button_menu_button_pressed(url, other_data):
+	emit_signal("account_button_pressed", url, pubkey+"/"+"0000000000000000")
+
+func _on_tx_id_button_menu_button_pressed(url, other_data):
+	if other_data != "null":
+		emit_signal("account_button_pressed", url, other_data)
+
+func _on_sweep_button_menu_button_pressed(url, other_data):
+	#print(url+other_data)
+	burn_sweep()
+	emit_signal("account_button_pressed", url, other_data)
+	
+
 func _on_active_spend_button_menu_button_pressed(url, other_data):
 	active_spend_box.visible = not active_spend_box.visible
 	hide()
 	show()
 
 
-func _on_pay_button_menu_button_pressed(url, other_data):
-	emit_signal("account_button_pressed", url, pubkey)
-
-func _on_stealth_button_menu_button_pressed(url, other_data):
-	if url == "/wallet/stealth/":
-		emit_signal("account_button_pressed", url, pubkey+"/"+"0000000000000000")
-	elif url == "/sign/multipay/":
-		emit_signal("account_button_pressed", url, other_data)
-
-func _on_tx_id_button_menu_button_pressed(url, other_data):
-	if other_data != "null":
-		emit_signal("account_button_pressed", url, other_data)
+func _on_change_button_menu_button_pressed(url, other_data):
+	emit_signal("account_button_pressed", url, other_data)

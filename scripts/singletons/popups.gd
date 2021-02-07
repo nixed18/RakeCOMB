@@ -10,6 +10,7 @@ onready var types = {
 	"line" : $line_Popup,
 	"file_select" : $file_Popup,
 	"load" : $load_Popup,
+	"recv" : $recv_Popup,
 }
 
 
@@ -42,4 +43,8 @@ func _on_text_Popup_response(response, data):
 
 
 func _on_line_Popup_response(response, data):
+	emit_response(response, data)
+
+
+func _on_recv_Popup_response(response, data):
 	emit_response(response, data)

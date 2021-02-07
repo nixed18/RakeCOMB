@@ -9,6 +9,9 @@ onready var sub_menus = {
 	"/wallet/stealth/" : $secret,
 	#"/wallet/generator" : $wallet,
 	"/import/" : $import,
+	"/sign/pay/" : $tx_sign,
+	"/sign/from/" : $change_add,
+	"/sign/multipay/" : $multipay,
 	}
 
 # Called when the node enters the scene tree for the first time.
@@ -25,8 +28,15 @@ func display(url, content_array):
 		return
 		
 	if url == "/stack/stealthdata/":
-		#popups.open()
 		return
+		
+	if url == "/tx/recv/":
+		popups.open("text", ["TX Stored", "Transaction stored successfully\nRemember to save your wallet", "Okay", null])
+		return
+		
+	if url == "/stack/multipaydata/":
+		frontend.go_to("/sign/multipay/", content_array)
+		
 		
 	hide_all()
 	

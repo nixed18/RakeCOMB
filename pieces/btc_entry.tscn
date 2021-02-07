@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/ui/pieces/btc_entry.gd" type="Script" id=1]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -10,8 +12,16 @@ use_mipmaps = true
 use_filter = true
 font_data = SubResource( 2 )
 
-[node name="line_edit" type="LineEdit"]
-margin_right = 595.0
+[node name="btc_entry" type="HBoxContainer"]
+margin_right = 584.0
+margin_bottom = 29.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="line_edit" type="LineEdit" parent="."]
+margin_right = 556.0
 margin_bottom = 29.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -19,9 +29,15 @@ focus_mode = 0
 custom_styles/read_only = SubResource( 1 )
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color_uneditable = Color( 1, 1, 1, 1 )
+text = "bc1qrq2aer8xhd20e4rd6wwytv0s2uu3mmlav9c4rnc09r8ptm7yxm7sc5cn4y"
 align = 1
 editable = false
 expand_to_text_length = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CheckBox" type="CheckBox" parent="."]
+margin_left = 560.0
+margin_right = 584.0
+margin_bottom = 29.0

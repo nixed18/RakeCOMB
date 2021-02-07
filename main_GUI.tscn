@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://scripts/ui/main_GUI.gd" type="Script" id=1]
 [ext_resource path="res://scripts/ui/content_panel.gd" type="Script" id=2]
@@ -16,20 +16,14 @@
 [ext_resource path="res://textures/shutdown_button/hover.png" type="Texture" id=14]
 [ext_resource path="res://textures/shutdown_button/pressed.png" type="Texture" id=15]
 [ext_resource path="res://scripts/ui/sub_menus/wallet.gd" type="Script" id=16]
-[ext_resource path="res://pieces/account_entry.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scripts/ui/sub_menus/secret.gd" type="Script" id=18]
 [ext_resource path="res://scripts/ui/sub_menus/import.gd" type="Script" id=19]
+[ext_resource path="res://scripts/ui/sub_menus/tx_sign.gd" type="Script" id=20]
+[ext_resource path="res://pieces/btc_entry.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scripts/ui/sub_menus/change_add.gd" type="Script" id=22]
+[ext_resource path="res://scripts/ui/sub_menus/multipay.gd" type="Script" id=23]
 
-[sub_resource type="DynamicFontData" id=1]
-font_path = "res://fonts/Sriracha-Regular.ttf"
-
-[sub_resource type="DynamicFont" id=2]
-size = 40
-use_mipmaps = true
-use_filter = true
-font_data = SubResource( 1 )
-
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 10.0
 content_margin_right = 10.0
 content_margin_top = 10.0
@@ -41,7 +35,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 20
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 20.0
 content_margin_right = 20.0
 content_margin_top = 10.0
@@ -53,36 +47,36 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 20
 
-[sub_resource type="StyleBoxEmpty" id=5]
+[sub_resource type="StyleBoxEmpty" id=3]
 content_margin_left = 20.0
 content_margin_right = 20.0
 content_margin_top = 10.0
 content_margin_bottom = 10.0
 
-[sub_resource type="DynamicFontData" id=6]
+[sub_resource type="DynamicFontData" id=4]
 font_path = "res://fonts/JosefinSans-Bold.ttf"
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=5]
 size = 40
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 4 )
+
+[sub_resource type="DynamicFontData" id=6]
+font_path = "res://fonts/Roboto-Medium.ttf"
+
+[sub_resource type="DynamicFont" id=7]
 use_mipmaps = true
 use_filter = true
 font_data = SubResource( 6 )
 
-[sub_resource type="DynamicFontData" id=8]
-font_path = "res://fonts/Roboto-Medium.ttf"
-
-[sub_resource type="DynamicFont" id=9]
-use_mipmaps = true
-use_filter = true
-font_data = SubResource( 8 )
-
-[sub_resource type="StyleBoxEmpty" id=10]
+[sub_resource type="StyleBoxEmpty" id=8]
 content_margin_left = 20.0
 content_margin_right = 20.0
 content_margin_top = 0.0
 content_margin_bottom = 10.0
 
-[sub_resource type="StyleBoxFlat" id=11]
+[sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0, 0, 0, 0 )
 corner_radius_top_left = 20
 corner_radius_top_right = 20
@@ -90,30 +84,30 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 corner_detail = 20
 
-[sub_resource type="DynamicFontData" id=12]
+[sub_resource type="DynamicFontData" id=10]
 font_path = "res://fonts/Roboto-Medium.ttf"
 
+[sub_resource type="DynamicFont" id=11]
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 10 )
+
+[sub_resource type="DynamicFontData" id=12]
+font_path = "res://fonts/JosefinSans-Bold.ttf"
+
 [sub_resource type="DynamicFont" id=13]
+size = 22
 use_mipmaps = true
 use_filter = true
 font_data = SubResource( 12 )
 
-[sub_resource type="DynamicFontData" id=14]
-font_path = "res://fonts/JosefinSans-Bold.ttf"
-
-[sub_resource type="DynamicFont" id=15]
-size = 22
-use_mipmaps = true
-use_filter = true
-font_data = SubResource( 14 )
-
-[sub_resource type="StyleBoxEmpty" id=16]
+[sub_resource type="StyleBoxEmpty" id=14]
 content_margin_left = 20.0
 content_margin_right = 20.0
 content_margin_top = 3.0
 content_margin_bottom = 0.0
 
-[sub_resource type="StyleBoxFlat" id=17]
+[sub_resource type="StyleBoxFlat" id=15]
 content_margin_left = 2.0
 content_margin_right = 2.0
 content_margin_top = 3.0
@@ -125,21 +119,21 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 20
 
-[sub_resource type="StyleBoxEmpty" id=18]
+[sub_resource type="StyleBoxEmpty" id=16]
 
-[sub_resource type="DynamicFontData" id=19]
+[sub_resource type="DynamicFontData" id=17]
 font_path = "res://fonts/Roboto-Medium.ttf"
 
-[sub_resource type="DynamicFont" id=20]
+[sub_resource type="DynamicFont" id=18]
 size = 13
 use_mipmaps = true
 use_filter = true
 extra_spacing_bottom = -5
-font_data = SubResource( 19 )
+font_data = SubResource( 17 )
 
-[sub_resource type="StyleBoxEmpty" id=21]
+[sub_resource type="StyleBoxEmpty" id=19]
 
-[sub_resource type="StyleBoxFlat" id=22]
+[sub_resource type="StyleBoxFlat" id=20]
 content_margin_left = 10.0
 content_margin_right = 10.0
 content_margin_top = 10.0
@@ -151,8 +145,17 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 20
 
-[sub_resource type="DynamicFontData" id=23]
+[sub_resource type="DynamicFontData" id=21]
 font_path = "res://fonts/Roboto-Medium.ttf"
+
+[sub_resource type="DynamicFont" id=22]
+size = 14
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 21 )
+
+[sub_resource type="DynamicFontData" id=23]
+font_path = "res://fonts/Roboto-Italic.ttf"
 
 [sub_resource type="DynamicFont" id=24]
 size = 14
@@ -161,13 +164,41 @@ use_filter = true
 font_data = SubResource( 23 )
 
 [sub_resource type="DynamicFontData" id=25]
-font_path = "res://fonts/Roboto-Italic.ttf"
+font_path = "res://fonts/Roboto-Medium.ttf"
 
 [sub_resource type="DynamicFont" id=26]
 size = 14
 use_mipmaps = true
 use_filter = true
 font_data = SubResource( 25 )
+
+[sub_resource type="DynamicFontData" id=27]
+font_path = "res://fonts/Roboto-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=28]
+size = 14
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 27 )
+
+[sub_resource type="DynamicFont" id=29]
+size = 12
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 27 )
+
+[sub_resource type="StyleBoxEmpty" id=30]
+
+[sub_resource type="DynamicFontData" id=31]
+font_path = "res://fonts/Roboto-Medium.ttf"
+
+[sub_resource type="DynamicFont" id=32]
+size = 14
+use_mipmaps = true
+use_filter = true
+extra_spacing_top = -5
+extra_spacing_bottom = -5
+font_data = SubResource( 31 )
 
 [node name="main_GUI" type="Control"]
 anchor_right = 1.0
@@ -244,21 +275,6 @@ margin_right = 320.0
 text = "Save As"
 my_url = "/export/save/"
 
-[node name="haircomb_core" type="Label" parent="."]
-visible = false
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -308.991
-margin_top = 15.2364
-margin_right = -48.9907
-margin_bottom = 86.2364
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.968627, 0.243137, 0.690196, 1 )
-text = "Haircomb Core"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="content_panel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -266,31 +282,15 @@ margin_left = 44.0
 margin_top = 103.0
 margin_right = -41.0
 margin_bottom = -43.0
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="content_panel"]
-visible = false
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -272.122
-margin_top = -57.3782
-margin_right = -12.1219
-margin_bottom = 13.6218
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.980392, 0.560784, 0.819608, 1 )
-text = "Haircomb Core"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="home" type="Control" parent="content_panel"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 7 )
@@ -310,7 +310,7 @@ margin_right = 330.0
 margin_bottom = 167.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -328,7 +328,7 @@ __meta__ = {
 [node name="title_box2" type="PanelContainer" parent="content_panel/home/main_fade_box/VBoxContainer"]
 margin_right = 620.0
 margin_bottom = 79.0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -348,7 +348,7 @@ margin_right = 580.0
 margin_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Haircomb Core"
 align = 1
@@ -362,8 +362,8 @@ margin_right = 580.0
 margin_bottom = 59.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 9 )
-text = "RakeCOMB GUI Wrapper v0.1.0"
+custom_fonts/font = SubResource( 7 )
+text = "RakeCOMB GUI Wrapper v0.2.0"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -373,7 +373,7 @@ __meta__ = {
 margin_top = 79.0
 margin_right = 620.0
 margin_bottom = 115.0
-custom_styles/panel = SubResource( 10 )
+custom_styles/panel = SubResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -403,7 +403,7 @@ my_url = "/basiccontract/"
 margin_top = 115.0
 margin_right = 620.0
 margin_bottom = 188.0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -432,7 +432,7 @@ text = "Fingerprint of commitment set of size 2997620"
 margin_top = 188.0
 margin_right = 620.0
 margin_bottom = 285.0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -471,9 +471,9 @@ margin_bottom = 399.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 0, 150 )
-custom_styles/read_only = SubResource( 11 )
-custom_styles/normal = SubResource( 11 )
-custom_fonts/font = SubResource( 13 )
+custom_styles/read_only = SubResource( 9 )
+custom_styles/normal = SubResource( 9 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color_readonly = Color( 1, 1, 1, 1 )
 text = "64f8d4215f40cd1e868809de35d35bd9b0b7a9eea37f16540edd8201238aed78
 Fingerprint of commitment set of size 2997620
@@ -517,7 +517,7 @@ margin_right = 166.5
 margin_bottom = 62.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -537,7 +537,7 @@ margin_right = 295.0
 margin_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Save Wallet"
 align = 1
@@ -552,7 +552,7 @@ visible = false
 margin_top = 68.0
 margin_right = 199.0
 margin_bottom = 71.0
-custom_styles/panel = SubResource( 16 )
+custom_styles/panel = SubResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -590,7 +590,7 @@ margin_right = 166.5
 margin_bottom = 62.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -610,7 +610,7 @@ margin_right = 295.0
 margin_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Import"
 align = 1
@@ -618,8 +618,8 @@ align = 1
 [node name="import_entry" parent="content_panel/import/main_fade_box/VBoxContainer" instance=ExtResource( 11 )]
 margin_top = 34.0
 margin_bottom = 59.0
-custom_styles/read_only = SubResource( 17 )
-custom_styles/focus = SubResource( 18 )
+custom_styles/read_only = SubResource( 15 )
+custom_styles/focus = SubResource( 16 )
 custom_colors/font_color_uneditable = Color( 0.886275, 0.886275, 0.886275, 1 )
 editable = false
 placeholder_text = "Choose a file"
@@ -629,7 +629,7 @@ visible = false
 margin_top = 68.0
 margin_right = 199.0
 margin_bottom = 71.0
-custom_styles/panel = SubResource( 16 )
+custom_styles/panel = SubResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -666,7 +666,7 @@ margin_right = -25.0
 margin_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -681,7 +681,7 @@ margin_right = 428.0
 margin_bottom = 38.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Validator"
 align = 1
@@ -698,7 +698,7 @@ margin_right = 313.0
 margin_bottom = 89.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 20 )
+custom_fonts/font = SubResource( 18 )
 text = "Sync with the BTC chain and compare against another synced peer.
 If your block numbers do not match, make sure you are both fully synced with the BTC chain.
 If your block numbers match, but there is a difference in the data below, there is a corruption."
@@ -716,9 +716,9 @@ margin_top = 97.0
 margin_right = -23.0
 margin_bottom = -40.0
 focus_mode = 0
-custom_styles/read_only = SubResource( 21 )
-custom_styles/normal = SubResource( 22 )
-custom_fonts/font = SubResource( 24 )
+custom_styles/read_only = SubResource( 19 )
+custom_styles/normal = SubResource( 20 )
+custom_fonts/font = SubResource( 22 )
 custom_colors/font_color_readonly = Color( 1, 1, 1, 1 )
 readonly = true
 __meta__ = {
@@ -761,7 +761,7 @@ margin_right = 313.0
 margin_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 26 )
+custom_fonts/font = SubResource( 24 )
 text = "Note: This tool is incomplete. For a complete validation, please use the native Haircomb validator"
 align = 1
 valign = 1
@@ -788,7 +788,7 @@ margin_right = -25.0
 margin_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -802,7 +802,7 @@ margin_right = 428.0
 margin_bottom = 38.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Wallet"
 align = 1
@@ -814,13 +814,13 @@ __meta__ = {
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -419.5
-margin_top = 45.0
-margin_right = 419.5
-margin_bottom = -25.0
+margin_left = -351.5
+margin_top = 47.0
+margin_right = 350.5
+margin_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -833,23 +833,197 @@ margin_top = 10.0
 margin_right = -10.0
 margin_bottom = -10.0
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="accounts_list" type="VBoxContainer" parent="content_panel/wallet/main_fade_box/accounts/ScrollContainer"]
+margin_right = 680.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="key_box" type="VBoxContainer" parent="content_panel/wallet/main_fade_box/accounts/ScrollContainer/accounts_list"]
+margin_right = 680.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="Control" type="Control" parent="content_panel/wallet/main_fade_box/accounts/ScrollContainer/accounts_list/key_box"]
+margin_right = 680.0
+margin_bottom = 2.0
+rect_min_size = Vector2( 0, 2 )
+
+[node name="key_box" type="HBoxContainer" parent="content_panel/wallet/main_fade_box/accounts/ScrollContainer/accounts_list/key_box"]
+margin_top = 6.0
+margin_right = 680.0
+margin_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 680, 0 )
+custom_constants/separation = 10
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="generate_key" parent="content_panel/wallet/main_fade_box/accounts/ScrollContainer/accounts_list/key_box/key_box" instance=ExtResource( 9 )]
+margin_left = 247.0
+margin_right = 433.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Generate an account"
+my_url = "/wallet/generator"
+
+[node name="change_add" type="Control" parent="content_panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 22 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="main_fade_box" type="Panel" parent="content_panel/change_add"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = 25.0
+margin_right = -25.0
+margin_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="content_panel/change_add/main_fade_box"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -428.0
+margin_top = 15.0
+margin_right = 428.0
+margin_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Select Change Address"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="accounts" type="Panel" parent="content_panel/change_add/main_fade_box"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -419.5
+margin_top = 45.0
+margin_right = 419.5
+margin_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="content_panel/change_add/main_fade_box/accounts"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="accounts_list" type="VBoxContainer" parent="content_panel/change_add/main_fade_box/accounts/ScrollContainer"]
 margin_right = 800.0
-margin_bottom = 26.0
 rect_min_size = Vector2( 800, 0 )
 custom_constants/separation = 15
 alignment = 1
 
-[node name="account_entry" parent="content_panel/wallet/main_fade_box/accounts/ScrollContainer/accounts_list" instance=ExtResource( 17 )]
+[node name="multipay" type="Control" parent="content_panel"]
 visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 23 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
 
-[node name="key_box" type="HBoxContainer" parent="content_panel/wallet/main_fade_box/accounts/ScrollContainer/accounts_list"]
+[node name="main_fade_box" type="Panel" parent="content_panel/multipay"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = 25.0
+margin_right = -25.0
+margin_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="content_panel/multipay/main_fade_box"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -428.0
+margin_top = 15.0
+margin_right = 428.0
+margin_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Build Transaction"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="accounts" type="Panel" parent="content_panel/multipay/main_fade_box"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -418.5
+margin_top = 92.0
+margin_right = 420.5
+margin_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="content_panel/multipay/main_fade_box/accounts"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="accounts_list" type="VBoxContainer" parent="content_panel/multipay/main_fade_box/accounts/ScrollContainer"]
 margin_right = 800.0
-margin_bottom = 26.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 800, 0 )
+custom_constants/separation = 15
+alignment = 1
+
+[node name="add_box" type="HBoxContainer" parent="content_panel/multipay/main_fade_box/accounts/ScrollContainer/accounts_list"]
+margin_right = 800.0
+margin_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_constants/separation = 10
@@ -858,14 +1032,92 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="generate_key" parent="content_panel/wallet/main_fade_box/accounts/ScrollContainer/accounts_list/key_box" instance=ExtResource( 9 )]
-margin_left = 307.0
-margin_right = 493.0
+[node name="add_receiver" parent="content_panel/multipay/main_fade_box/accounts/ScrollContainer/accounts_list/add_box" instance=ExtResource( 9 )]
+margin_left = 317.0
+margin_right = 483.0
+margin_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
+custom_fonts/font = SubResource( 26 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Generate an account"
-my_url = "/wallet/generator"
+text = "Add Receiving Address"
+my_url = "/sign/multipay/"
+
+[node name="source" type="VBoxContainer" parent="content_panel/multipay/main_fade_box"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -342.5
+margin_top = 39.0
+margin_right = 343.5
+margin_bottom = 81.0
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="source_acc" parent="content_panel/multipay/main_fade_box/source" instance=ExtResource( 8 )]
+margin_right = 686.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 28 )
+text = "3FC2CBCB0117BB3A9226781AD0D2A3760C3B02D00321247A7B73D404F656FB8B"
+
+[node name="source_text" type="Label" parent="content_panel/multipay/main_fade_box/source"]
+margin_top = 27.0
+margin_right = 686.0
+margin_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 29 )
+text = "will fund the transaction with 10.57 COMB"
+align = 1
+
+[node name="change" type="VBoxContainer" parent="content_panel/multipay/main_fade_box"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -342.5
+margin_top = -83.0
+margin_right = 343.5
+margin_bottom = -41.0
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="change_text" type="Label" parent="content_panel/multipay/main_fade_box/change"]
+margin_right = 686.0
+margin_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 29 )
+text = "0.57 COMB will be spent to 3 destinations. The remaining 10 COMB will be sent to:"
+align = 1
+
+[node name="change_acc" parent="content_panel/multipay/main_fade_box/change" instance=ExtResource( 8 )]
+margin_top = 15.0
+margin_right = 686.0
+margin_bottom = 42.0
+custom_fonts/font = SubResource( 28 )
+text = "3FC2CBCB0117BB3A9226781AD0D2A3760C3B02D00321247A7B73D404F656FB8B"
+
+[node name="execute" parent="content_panel/multipay/main_fade_box" instance=ExtResource( 9 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -83.0
+margin_top = -36.0
+margin_right = 83.0
+margin_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 26 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Execute Payment"
+my_url = "/sign/pay/"
 
 [node name="secret" type="Control" parent="content_panel"]
 visible = false
@@ -886,7 +1138,7 @@ margin_right = -25.0
 margin_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -900,7 +1152,7 @@ margin_right = 428.0
 margin_bottom = 38.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Secret Addresses"
 align = 1
@@ -917,7 +1169,7 @@ margin_right = 313.5
 margin_bottom = 106.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 20 )
+custom_fonts/font = SubResource( 18 )
 text = "Secret addresses for account #
 To claim haircomb, send 330 sats to a mine address.
 If your transaction is at the top of the block, you get the COMB
@@ -938,7 +1190,7 @@ margin_right = 327.5
 margin_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -959,6 +1211,191 @@ __meta__ = {
 
 [node name="address_list" type="VBoxContainer" parent="content_panel/secret/main_fade_box/accounts/ScrollContainer"]
 alignment = 1
+
+[node name="tx_sign" type="Control" parent="content_panel"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 20 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="main_fade_box" type="Panel" parent="content_panel/tx_sign"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = 25.0
+margin_right = -25.0
+margin_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="content_panel/tx_sign/main_fade_box"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -428.0
+margin_top = 15.0
+margin_right = 428.0
+margin_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Transaction Details"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="instructions" type="Label" parent="content_panel/tx_sign/main_fade_box"]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -312.5
+margin_top = 29.0
+margin_right = 313.5
+margin_bottom = 106.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 18 )
+text = "TX ID:
+Pay to: CFFC9ADBE4F62C8F0D55D7AB945C925434AC1F4F51EA5E86BAB72148B31A10AE"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="accounts" type="Panel" parent="content_panel/tx_sign/main_fade_box"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -319.5
+margin_top = 129.0
+margin_right = 318.5
+margin_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="content_panel/tx_sign/main_fade_box/accounts"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_styles/bg = SubResource( 30 )
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="address_list" type="VBoxContainer" parent="content_panel/tx_sign/main_fade_box/accounts/ScrollContainer"]
+margin_right = 584.0
+margin_bottom = 29.0
+alignment = 1
+
+[node name="btc_entry" parent="content_panel/tx_sign/main_fade_box/accounts/ScrollContainer/address_list" instance=ExtResource( 21 )]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="content_panel/tx_sign/main_fade_box"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -310.0
+margin_top = 44.0
+margin_right = 310.0
+margin_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="content_panel/tx_sign/main_fade_box/HBoxContainer"]
+margin_left = 37.0
+margin_top = 6.0
+margin_right = 75.0
+margin_bottom = 13.0
+custom_fonts/font = SubResource( 32 )
+text = "TX ID:"
+
+[node name="tx_id" parent="content_panel/tx_sign/main_fade_box/HBoxContainer" instance=ExtResource( 8 )]
+margin_left = 75.0
+margin_right = 583.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 32 )
+text = "6df522ea340320509d1a4b1e6cd4fb6450e1d76a1d03f7bf3cbf19d9215a500b"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="content_panel/tx_sign/main_fade_box"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -344.0
+margin_top = 63.0
+margin_right = 344.0
+margin_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="content_panel/tx_sign/main_fade_box/HBoxContainer2"]
+margin_left = 40.0
+margin_top = 6.0
+margin_right = 103.0
+margin_bottom = 13.0
+custom_fonts/font = SubResource( 32 )
+text = "Payed to: "
+
+[node name="pay_to" parent="content_panel/tx_sign/main_fade_box/HBoxContainer2" instance=ExtResource( 8 )]
+margin_left = 103.0
+margin_right = 648.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 32 )
+text = "CFFC9ADBE4F62C8F0D55D7AB945C925434AC1F4F51EA5E86BAB72148B31A10AE"
+
+[node name="instruction_button" parent="content_panel/tx_sign/main_fade_box" instance=ExtResource( 9 )]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -50.0
+margin_top = 91.0
+margin_right = 50.0
+margin_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Payment Instructions"
+my_url = "payment_instructions"
+
+[node name="confirm_button" parent="content_panel/tx_sign/main_fade_box" instance=ExtResource( 9 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -96.0
+margin_top = -38.0
+margin_right = 96.0
+margin_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Confirm Transaction"
+my_url = "/tx/recv/"
 [connection signal="pressed" from="shutdown_button" to="." method="_on_shutdown_button_pressed"]
 [connection signal="pressed" from="nav_bar/home_button" to="." method="_on_home_button_pressed"]
 [connection signal="menu_button_pressed" from="nav_bar/HBoxContainer2/wallet" to="." method="_on_wallet_menu_button_pressed"]
@@ -974,5 +1411,11 @@ alignment = 1
 [connection signal="gui_input" from="content_panel/import/main_fade_box/VBoxContainer/import_entry" to="content_panel/import" method="_on_save_entry_gui_input"]
 [connection signal="menu_button_pressed" from="content_panel/import/main_fade_box/VBoxContainer/HBoxContainer/import_button" to="content_panel/import" method="_on_import_button_menu_button_pressed"]
 [connection signal="account_button_pressed" from="content_panel/wallet" to="." method="_on_wallet_account_button_pressed"]
-[connection signal="menu_button_pressed" from="content_panel/wallet/main_fade_box/accounts/ScrollContainer/accounts_list/key_box/generate_key" to="content_panel/wallet" method="_on_generate_key_menu_button_pressed"]
+[connection signal="menu_button_pressed" from="content_panel/wallet/main_fade_box/accounts/ScrollContainer/accounts_list/key_box/key_box/generate_key" to="content_panel/wallet" method="_on_generate_key_menu_button_pressed"]
+[connection signal="account_button_pressed" from="content_panel/change_add" to="." method="_on_change_add_account_button_pressed"]
+[connection signal="account_button_pressed" from="content_panel/multipay" to="." method="_on_multipay_account_button_pressed"]
+[connection signal="menu_button_pressed" from="content_panel/multipay/main_fade_box/accounts/ScrollContainer/accounts_list/add_box/add_receiver" to="content_panel/multipay" method="_on_add_receiver_menu_button_pressed"]
+[connection signal="menu_button_pressed" from="content_panel/multipay/main_fade_box/execute" to="content_panel/multipay" method="_on_execute_menu_button_pressed"]
 [connection signal="sweep_initiated" from="content_panel/secret" to="." method="_on_secret_sweep_initiated"]
+[connection signal="menu_button_pressed" from="content_panel/tx_sign/main_fade_box/instruction_button" to="content_panel/tx_sign" method="_on_instruction_button_menu_button_pressed"]
+[connection signal="menu_button_pressed" from="content_panel/tx_sign/main_fade_box/confirm_button" to="." method="_on_confirm_button_menu_button_pressed"]

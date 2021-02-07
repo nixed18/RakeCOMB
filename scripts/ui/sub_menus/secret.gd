@@ -2,7 +2,7 @@ extends "res://scripts/ui/sub_menus/_sub_menu_base.gd"
 
 signal sweep_initiated(url, ext)
 
-var address_template = preload("res://pieces/secret_entry.tscn")
+var address_template = preload("res://pieces/modular_entry.tscn")
 
 var pubkey = String()
 var base_info = "Secret addresses for account #\nTo claim haircomb, send 330 sats to a mine address.\nIf your transaction is at the top of the block, you get the COMB"
@@ -32,8 +32,8 @@ func clear_addresses():
 func spawn_address(address_info):
 	var new_address = address_template.instance()
 	address_list.add_child(new_address)
-	new_address.setup(address_info)
-	new_address.connect("sweep_button_pressed", self, "_on_sweep_button_pressed")
+	new_address.setup_for_stealth(address_info)
+	new_address.connect("account_button_pressed", self, "_on_sweep_button_pressed")
 
 func spawn_addresses(list):
 	for info in list:

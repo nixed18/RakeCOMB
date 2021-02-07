@@ -58,7 +58,6 @@ func send_request(url, ext):
 	if ext == null:
 		ext = ""
 	var out_url = url + ext
-	print(out_url)
 	
 	if pending_request != null:
 		print("Request Rejected: Response in Progress")
