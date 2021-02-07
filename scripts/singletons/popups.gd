@@ -32,10 +32,10 @@ func close():
 	
 
 func emit_response(response, data):
-	emit_signal("response", response, data)
 	active.hide()
 	active = null
 	bg.hide()
+	emit_signal("response", response, data)
 
 
 func _on_text_Popup_response(response, data):

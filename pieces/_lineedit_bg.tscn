@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[sub_resource type="StyleBoxFlat" id=25]
+[sub_resource type="StyleBoxFlat" id=37]
 content_margin_left = 2.0
 content_margin_right = 2.0
 content_margin_top = 3.0
@@ -12,20 +12,20 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 20
 
-[sub_resource type="DynamicFontData" id=26]
+[sub_resource type="DynamicFontData" id=33]
 font_path = "res://fonts/Roboto-Medium.ttf"
 
-[sub_resource type="DynamicFont" id=27]
+[sub_resource type="DynamicFont" id=3]
 use_mipmaps = true
 use_filter = true
-font_data = SubResource( 26 )
+font_data = SubResource( 33 )
 
 [node name="line_entry" type="LineEdit"]
 margin_right = 295.0
 margin_bottom = 25.0
-custom_styles/focus = SubResource( 25 )
-custom_styles/normal = SubResource( 25 )
-custom_fonts/font = SubResource( 27 )
+custom_styles/focus = SubResource( 37 )
+custom_styles/normal = SubResource( 37 )
+custom_fonts/font = SubResource( 3 )
 align = 1
 caret_blink = true
 __meta__ = {

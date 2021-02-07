@@ -34,7 +34,7 @@ func connect_to(ip, port):
 	if err != 0:
 		print("Initial Connection Error: ", err)
 		return
-		
+	print("Connecting . . .")
 	pending_connection = true
 	
 	return check_connect_status()
@@ -50,7 +50,8 @@ func check_connect_status():
 		return true
 		
 	elif status == HTTPClient.STATUS_CONNECTING or status == HTTPClient.STATUS_RESOLVING:
-		print("Connecting . . .")
+		#print("Connecting . . .")
+		pass
 	
 		
 		

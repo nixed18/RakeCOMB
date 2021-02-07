@@ -33,6 +33,7 @@ transition="*res://transition.tscn"
 popups="*res://popups.tscn"
 httppost_formatter="*res://scripts/singletons/httppost_formatter.gd"
 accounts="*res://scripts/singletons/accounts.gd"
+fileman="*res://scripts/singletons/fileman.gd"
 
 [network]
 

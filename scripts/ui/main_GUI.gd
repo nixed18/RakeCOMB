@@ -27,6 +27,9 @@ func _on_save_menu_button_pressed(url, other_data):
 func _on_import_menu_button_pressed(url, other_data):
 	content_panel.display(url, null)
 	
+func _on_export_menu_button_pressed(url, other_data):
+	frontend.go_to(url, other_data)
+	
 func _on_shutdown_button_pressed():
 	frontend.go_to("/shutdown")
 	
@@ -71,3 +74,9 @@ func _on_change_add_account_button_pressed(url, ext):
 
 func _on_multipay_account_button_pressed(url, ext):
 	frontend.go_to(url, ext)
+
+#Export
+func _on_export_export_requested(url, ext):
+	frontend.go_to(url, ext)
+
+

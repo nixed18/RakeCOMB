@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://scripts/ui/main_GUI.gd" type="Script" id=1]
 [ext_resource path="res://scripts/ui/content_panel.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://textures/shutdown_button/hover.png" type="Texture" id=14]
 [ext_resource path="res://textures/shutdown_button/pressed.png" type="Texture" id=15]
 [ext_resource path="res://scripts/ui/sub_menus/wallet.gd" type="Script" id=16]
+[ext_resource path="res://scripts/ui/sub_menus/export.gd" type="Script" id=17]
 [ext_resource path="res://scripts/ui/sub_menus/secret.gd" type="Script" id=18]
 [ext_resource path="res://scripts/ui/sub_menus/import.gd" type="Script" id=19]
 [ext_resource path="res://scripts/ui/sub_menus/tx_sign.gd" type="Script" id=20]
@@ -121,15 +122,50 @@ corner_detail = 20
 
 [sub_resource type="StyleBoxEmpty" id=16]
 
-[sub_resource type="DynamicFontData" id=17]
+[sub_resource type="StyleBoxFlat" id=37]
+content_margin_left = 2.0
+content_margin_right = 2.0
+content_margin_top = 3.0
+content_margin_bottom = 3.0
+bg_color = Color( 0, 0, 0, 0.184314 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="DynamicFontData" id=33]
 font_path = "res://fonts/Roboto-Medium.ttf"
 
-[sub_resource type="DynamicFont" id=18]
+[sub_resource type="DynamicFont" id=34]
+size = 14
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 33 )
+
+[sub_resource type="DynamicFontData" id=35]
+font_path = "res://fonts/Roboto-Italic.ttf"
+
+[sub_resource type="DynamicFont" id=36]
 size = 13
 use_mipmaps = true
 use_filter = true
-extra_spacing_bottom = -5
-font_data = SubResource( 17 )
+font_data = SubResource( 35 )
+
+[sub_resource type="DynamicFontData" id=27]
+font_path = "res://fonts/Roboto-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=29]
+size = 12
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 27 )
+
+[sub_resource type="DynamicFont" id=28]
+size = 14
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 27 )
 
 [sub_resource type="StyleBoxEmpty" id=19]
 
@@ -154,6 +190,16 @@ use_mipmaps = true
 use_filter = true
 font_data = SubResource( 21 )
 
+[sub_resource type="DynamicFontData" id=17]
+font_path = "res://fonts/Roboto-Medium.ttf"
+
+[sub_resource type="DynamicFont" id=18]
+size = 13
+use_mipmaps = true
+use_filter = true
+extra_spacing_bottom = -5
+font_data = SubResource( 17 )
+
 [sub_resource type="DynamicFontData" id=23]
 font_path = "res://fonts/Roboto-Italic.ttf"
 
@@ -171,21 +217,6 @@ size = 14
 use_mipmaps = true
 use_filter = true
 font_data = SubResource( 25 )
-
-[sub_resource type="DynamicFontData" id=27]
-font_path = "res://fonts/Roboto-Bold.ttf"
-
-[sub_resource type="DynamicFont" id=28]
-size = 14
-use_mipmaps = true
-use_filter = true
-font_data = SubResource( 27 )
-
-[sub_resource type="DynamicFont" id=29]
-size = 12
-use_mipmaps = true
-use_filter = true
-font_data = SubResource( 27 )
 
 [sub_resource type="StyleBoxEmpty" id=30]
 
@@ -263,6 +294,12 @@ margin_right = 210.0
 text = "Import"
 my_url = "/import/"
 
+[node name="export" parent="nav_bar/HBoxContainer2" instance=ExtResource( 6 )]
+margin_left = 220.0
+margin_right = 320.0
+text = "Export"
+my_url = "/export/index.html"
+
 [node name="utxo" parent="nav_bar/HBoxContainer2" instance=ExtResource( 6 )]
 visible = false
 margin_left = 220.0
@@ -270,8 +307,8 @@ margin_right = 320.0
 text = "UTXO"
 
 [node name="save" parent="nav_bar/HBoxContainer2" instance=ExtResource( 6 )]
-margin_left = 220.0
-margin_right = 320.0
+margin_left = 330.0
+margin_right = 430.0
 text = "Save As"
 my_url = "/export/save/"
 
@@ -319,7 +356,7 @@ __meta__ = {
 margin_left = 20.0
 margin_top = 10.0
 margin_right = 640.0
-margin_bottom = 321.0
+margin_bottom = 316.0
 custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -372,7 +409,7 @@ __meta__ = {
 [node name="button_box" type="PanelContainer" parent="content_panel/home/main_fade_box/VBoxContainer"]
 margin_top = 79.0
 margin_right = 620.0
-margin_bottom = 115.0
+margin_bottom = 110.0
 custom_styles/panel = SubResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -381,28 +418,28 @@ __meta__ = {
 [node name="HBoxContainer2" type="HBoxContainer" parent="content_panel/home/main_fade_box/VBoxContainer/button_box"]
 margin_left = 20.0
 margin_right = 600.0
-margin_bottom = 26.0
+margin_bottom = 21.0
 custom_constants/separation = 10
 alignment = 1
 
 [node name="deciders_purse" parent="content_panel/home/main_fade_box/VBoxContainer/button_box/HBoxContainer2" instance=ExtResource( 9 )]
-margin_left = 145.0
-margin_right = 287.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
+margin_left = 170.0
+margin_right = 286.0
+margin_bottom = 21.0
 text = "Deciders Purse"
 my_url = "/purse/"
 
 [node name="basic_contract" parent="content_panel/home/main_fade_box/VBoxContainer/button_box/HBoxContainer2" instance=ExtResource( 9 )]
-margin_left = 297.0
-margin_right = 434.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
+margin_left = 296.0
+margin_right = 409.0
+margin_bottom = 21.0
 text = "Basic Contract"
 my_url = "/basiccontract/"
 
 [node name="fingeprint_box2" type="PanelContainer" parent="content_panel/home/main_fade_box/VBoxContainer"]
-margin_top = 115.0
+margin_top = 110.0
 margin_right = 620.0
-margin_bottom = 188.0
+margin_bottom = 183.0
 custom_styles/panel = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -429,9 +466,9 @@ margin_bottom = 53.0
 text = "Fingerprint of commitment set of size 2997620"
 
 [node name="stats_box2" type="PanelContainer" parent="content_panel/home/main_fade_box/VBoxContainer"]
-margin_top = 188.0
+margin_top = 183.0
 margin_right = 620.0
-margin_bottom = 285.0
+margin_bottom = 280.0
 custom_styles/panel = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -484,15 +521,15 @@ Synced to Bitcoin block: 669975
 readonly = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="content_panel/home/main_fade_box/VBoxContainer"]
-margin_top = 285.0
+margin_top = 280.0
 margin_right = 620.0
-margin_bottom = 311.0
+margin_bottom = 301.0
 alignment = 1
 
 [node name="validate_database" parent="content_panel/home/main_fade_box/VBoxContainer/HBoxContainer" instance=ExtResource( 9 )]
-margin_left = 225.0
-margin_right = 394.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
+margin_left = 241.0
+margin_right = 379.0
+margin_bottom = 21.0
 text = "Validate Database"
 my_url = "/utxo/bisect/b"
 
@@ -646,6 +683,204 @@ margin_right = 197.0
 text = "Import"
 my_url = "/import/"
 other_data = "general"
+
+[node name="export" type="Control" parent="content_panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="select_box" type="PanelContainer" parent="content_panel/export"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -363.5
+margin_top = -14.0
+margin_right = 364.5
+margin_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="select_box" type="VBoxContainer" parent="content_panel/export/select_box"]
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 708.0
+margin_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/separation = 11
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="content_panel/export/select_box/select_box"]
+margin_right = 688.0
+margin_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Export"
+align = 1
+
+[node name="address_entry" type="LineEdit" parent="content_panel/export/select_box/select_box"]
+margin_top = 34.0
+margin_right = 688.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 600, 0 )
+custom_styles/read_only = SubResource( 15 )
+custom_styles/focus = SubResource( 16 )
+custom_styles/normal = SubResource( 37 )
+custom_fonts/font = SubResource( 34 )
+custom_colors/font_color_uneditable = Color( 0.886275, 0.886275, 0.886275, 1 )
+align = 1
+placeholder_text = "Enter the address you wish to export for"
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="content_panel/export/select_box/select_box"]
+margin_top = 68.0
+margin_right = 688.0
+margin_bottom = 94.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="export_add" parent="content_panel/export/select_box/select_box/HBoxContainer" instance=ExtResource( 9 )]
+margin_left = 129.0
+margin_right = 332.0
+text = "Export Address History"
+my_url = "/export/history/"
+other_data = ""
+
+[node name="export_full" parent="content_panel/export/select_box/select_box/HBoxContainer" instance=ExtResource( 9 )]
+margin_left = 342.0
+margin_right = 558.0
+text = "Export Complete History"
+my_url = "/export/history/"
+other_data = "x"
+
+[node name="note" type="Label" parent="content_panel/export/select_box/select_box"]
+margin_top = 105.0
+margin_right = 688.0
+margin_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 36 )
+text = "Note: It is not recommended to export a complete history, please send each receiver their own history."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="history_box" type="Panel" parent="content_panel/export"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_styles/panel = SubResource( 2 )
+
+[node name="Label" type="Label" parent="content_panel/export/history_box"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -439.5
+margin_top = 10.0
+margin_right = 439.5
+margin_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Export"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="source2" type="VBoxContainer" parent="content_panel/export/history_box"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -439.5
+margin_top = 44.0
+margin_right = 439.5
+margin_bottom = 86.0
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="source_text" type="Label" parent="content_panel/export/history_box/source2"]
+margin_right = 879.0
+margin_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 29 )
+text = "Coin history for"
+align = 1
+
+[node name="source_acc" parent="content_panel/export/history_box/source2" instance=ExtResource( 8 )]
+margin_top = 15.0
+margin_right = 879.0
+margin_bottom = 42.0
+custom_fonts/font = SubResource( 28 )
+text = "3FC2CBCB0117BB3A9226781AD0D2A3760C3B02D00321247A7B73D404F656FB8B"
+
+[node name="history_entry" type="TextEdit" parent="content_panel/export/history_box"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 99.0
+margin_right = -10.0
+margin_bottom = -55.0
+rect_min_size = Vector2( 0, 200 )
+focus_mode = 0
+custom_styles/read_only = SubResource( 19 )
+custom_styles/normal = SubResource( 20 )
+custom_fonts/font = SubResource( 22 )
+custom_colors/font_color_readonly = Color( 1, 1, 1, 1 )
+readonly = true
+wrap_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="content_panel/export/history_box"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -439.5
+margin_top = -39.0
+margin_right = 439.5
+margin_bottom = -13.0
+custom_constants/separation = 10
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="dat" parent="content_panel/export/history_box/HBoxContainer" instance=ExtResource( 9 )]
+margin_left = 368.0
+margin_right = 511.0
+text = "Create .dat File"
+my_url = "dat"
+other_data = ""
 
 [node name="validator" type="Control" parent="content_panel"]
 visible = false
@@ -869,11 +1104,11 @@ margin_left = 247.0
 margin_right = 433.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Generate an account"
 my_url = "/wallet/generator"
 
 [node name="change_add" type="Control" parent="content_panel"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 22 )
@@ -1039,7 +1274,6 @@ margin_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_fonts/font = SubResource( 26 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Add Receiving Address"
 my_url = "/sign/multipay/"
 
@@ -1115,7 +1349,6 @@ margin_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_fonts/font = SubResource( 26 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Execute Payment"
 my_url = "/sign/pay/"
 
@@ -1276,9 +1509,9 @@ __meta__ = {
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -319.5
+margin_left = -281.5
 margin_top = 129.0
-margin_right = 318.5
+margin_right = 280.5
 margin_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -1303,11 +1536,12 @@ __meta__ = {
 }
 
 [node name="address_list" type="VBoxContainer" parent="content_panel/tx_sign/main_fade_box/accounts/ScrollContainer"]
-margin_right = 584.0
-margin_bottom = 29.0
+margin_right = 518.0
+margin_bottom = 24.0
 alignment = 1
 
 [node name="btc_entry" parent="content_panel/tx_sign/main_fade_box/accounts/ScrollContainer/address_list" instance=ExtResource( 21 )]
+margin_right = 518.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="content_panel/tx_sign/main_fade_box"]
 anchor_left = 0.5
@@ -1378,7 +1612,6 @@ margin_right = 50.0
 margin_bottom = 117.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Payment Instructions"
 my_url = "payment_instructions"
 
@@ -1393,13 +1626,13 @@ margin_right = 96.0
 margin_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Confirm Transaction"
 my_url = "/tx/recv/"
 [connection signal="pressed" from="shutdown_button" to="." method="_on_shutdown_button_pressed"]
 [connection signal="pressed" from="nav_bar/home_button" to="." method="_on_home_button_pressed"]
 [connection signal="menu_button_pressed" from="nav_bar/HBoxContainer2/wallet" to="." method="_on_wallet_menu_button_pressed"]
 [connection signal="menu_button_pressed" from="nav_bar/HBoxContainer2/import" to="." method="_on_import_menu_button_pressed"]
+[connection signal="menu_button_pressed" from="nav_bar/HBoxContainer2/export" to="." method="_on_export_menu_button_pressed"]
 [connection signal="menu_button_pressed" from="nav_bar/HBoxContainer2/save" to="." method="_on_save_menu_button_pressed"]
 [connection signal="validate_requested" from="content_panel/home" to="." method="_on_home_validate_requested"]
 [connection signal="menu_button_pressed" from="content_panel/home/main_fade_box/VBoxContainer/button_box/HBoxContainer2/deciders_purse" to="." method="_on_deciders_purse_menu_button_pressed"]
@@ -1410,6 +1643,10 @@ my_url = "/tx/recv/"
 [connection signal="import_requested" from="content_panel/import" to="." method="_on_import_import_requested"]
 [connection signal="gui_input" from="content_panel/import/main_fade_box/VBoxContainer/import_entry" to="content_panel/import" method="_on_save_entry_gui_input"]
 [connection signal="menu_button_pressed" from="content_panel/import/main_fade_box/VBoxContainer/HBoxContainer/import_button" to="content_panel/import" method="_on_import_button_menu_button_pressed"]
+[connection signal="export_requested" from="content_panel/export" to="." method="_on_export_export_requested"]
+[connection signal="menu_button_pressed" from="content_panel/export/select_box/select_box/HBoxContainer/export_add" to="content_panel/export" method="_on_export_add_menu_button_pressed"]
+[connection signal="menu_button_pressed" from="content_panel/export/select_box/select_box/HBoxContainer/export_full" to="content_panel/export" method="_on_export_full_menu_button_pressed"]
+[connection signal="menu_button_pressed" from="content_panel/export/history_box/HBoxContainer/dat" to="content_panel/export" method="_on_dat_menu_button_pressed"]
 [connection signal="account_button_pressed" from="content_panel/wallet" to="." method="_on_wallet_account_button_pressed"]
 [connection signal="menu_button_pressed" from="content_panel/wallet/main_fade_box/accounts/ScrollContainer/accounts_list/key_box/key_box/generate_key" to="content_panel/wallet" method="_on_generate_key_menu_button_pressed"]
 [connection signal="account_button_pressed" from="content_panel/change_add" to="." method="_on_change_add_account_button_pressed"]

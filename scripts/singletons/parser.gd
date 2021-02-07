@@ -229,7 +229,6 @@ func pull_to(target, data):
 #	return output
 
 func homepage_protocol(data):
-	yield(get_tree().create_timer(0.016), "timeout")
 	#var output = data.replace("html", "!!!")
 	
 	var output = strip_to("</script>", data)
@@ -264,7 +263,6 @@ func homepage_protocol(data):
 	return values
 
 func save_protocol(data):
-	yield(get_tree().create_timer(0.016), "timeout")
 	var output = strip_to("<br />", data)
 	var values#[bool, text]
 	
@@ -290,7 +288,6 @@ func save_protocol(data):
 	return values
 
 func validate_protocol(data):
-	yield(get_tree().create_timer(0.016), "timeout")
 	if data[0] == "e":
 		print("Validate Error")
 		return null
@@ -337,7 +334,6 @@ func validate_protocol(data):
 	return values
 		
 func shutdown_protocol(data):
-	yield(get_tree().create_timer(0.016), "timeout")
 	if "Shutdown successfull" in data:
 		get_tree().quit()
 	elif "Wallet is not saved" in data:
@@ -346,7 +342,6 @@ func shutdown_protocol(data):
 		print(data)
 
 func wallet_protocol(data):
-	yield(get_tree().create_timer(0.016), "timeout")
 	#Figure out how many accounts there are
 	#Account pubkeys marks by <tt>
 	
@@ -442,7 +437,6 @@ func wallet_protocol(data):
 	return values
 	
 func stealth_protocol(data):
-	yield(get_tree().create_timer(0.016), "timeout")
 	var run = true
 	var values = [String(), []]#[pubkey, [address arrays]]
 	var output = data
@@ -454,7 +448,7 @@ func stealth_protocol(data):
 	
 	while run:
 		var x = 0
-		while x < 500:
+		while x < 5000:
 			#yield(get_tree().create_timer(0.5), "timeout")
 			var info = [String(), String(), String(), String()] #[comb_address, balance, mine_address, sweep_link]
 			#Strip to next segment
@@ -496,14 +490,11 @@ func stealth_protocol(data):
 			#print(info)
 			values[1].append(info)
 			x+=1
-		
-		#yield(get_tree().create_timer(0.016), "timeout")
+			#yield(get_tree().create_timer(0.016), "timeout")
 
 	return(values)
-		#Pull segment, if it is valid, continue
 		
 func import_protocol(data):
-	yield(get_tree().create_timer(0.016), "timeout")
 	#values = [String(), String(), String(), String(), String()]
 	var values = String()
 	var output = strip_to("<br />", data)
@@ -516,7 +507,11 @@ func import_protocol(data):
 	return values
 		 
 func txsign_protocol(data):
-	yield(get_tree().create_timer(0.016), "timeout")
+	
+	if "error" in data:
+		if "previously resided" in data:
+			return ["error", "loop", null]
+		
 	
 	var values = [String(), String(), [], String()] #txid, dest, address_array, ext
 	
@@ -537,7 +532,7 @@ func txsign_protocol(data):
 	return values
 	
 func txrecv_protocol(data):
-	yield(get_tree().create_timer(0.016), "timeout")
+
 	#Strip for debug?
 	var value = String()
 	
@@ -547,7 +542,7 @@ func txrecv_protocol(data):
 	return value
 		
 func change_protocol(data):
-	yield(get_tree().create_timer(0.016), "timeout")
+
 	var output = data
 	var values = []
 
@@ -575,7 +570,6 @@ func change_protocol(data):
 		pass
 	
 func multipay_protocol(data):
-	yield(get_tree().create_timer(0.016), "timeout")
 	var output = data
 	var values = [String(), String(), [], String()]#pubkey, change, recv_array, do_pay_url
 	
@@ -610,7 +604,6 @@ func multipay_protocol(data):
 	return values
 	
 func multipaydata_protocol(data):
-	yield(get_tree().create_timer(0.016), "timeout")
 	var output = data
 	var values = String()
 	if "loaded stack" in output:

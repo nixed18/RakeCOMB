@@ -17,6 +17,8 @@ func to(url, ext):
 	
 	httpman.send_request(url, ext)
 	data = yield(respman, "response_processed")
+	if typeof(data) == 17:
+		data = yield(data, "completed")
 	#print(data)
 		
 	#Wait

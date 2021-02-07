@@ -17,6 +17,13 @@ func _ready():
 func _on_launched(content):
 	#content = [txid, dest_address, [21_addresses], confirm_ext]
 	if content!=null:
+		#check for error first
+		if content[0] == "error":
+			if content[1] == "loop":
+				frontend.go_to("/wallet/")
+				popups.open("text", ["Transaction Error", "COMB cannot be sent to an address it has previously been, doing so will cause an infinite loop and the funds will be lost.", "Okay", null])
+			return
+			
 		tx_id.text=content[0]
 		pay_to.text=content[1]
 		spawn_entries(content[2])

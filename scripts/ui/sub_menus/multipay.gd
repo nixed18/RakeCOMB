@@ -9,6 +9,7 @@ var accounts_array = []
 var pubkey = null
 var change = null
 var stack = null
+var stored_sent = 0.0
 
 var base_source_text = "will fund the transaction with # COMB"
 var base_change_text = "#1 COMB will be spent. The remaining #2 COMB will be sent to:"
@@ -34,6 +35,7 @@ func _ready():
 func _on_launched(content):
 	#Content = #[pubkey, change, [recv_array], stack]
 	#dest_array = [[dest_add1, amount_sent], [dest_add2, amount_sent], etc]
+	stored_sent = 0
 	if content != null:
 		pubkey = content[0]
 		change = content[1]
@@ -66,7 +68,14 @@ func set_text(content):
 
 	change_text.text = base_change_text.replace("#1", str(sent))
 	change_text.text = change_text.text.replace("#2", str(remaining))
+	
+	stored_sent = sent
 
+func check_overspend(amount):
+	var remaining = float(accounts.accounts[pubkey].balance)-(stored_sent+amount)
+	if remaining < 0.0:
+		return false
+	return true
 
 func spawn_account_entry(account_info):
 	var new_account = account_template.instance()
@@ -92,6 +101,11 @@ func _on_add_receiver_menu_button_pressed(url, other_data):
 	if not response[0]:
 		pass
 	else:
+		if response[1][1] == "":
+			response[1][1] = "0"
+		if response[1][2] == "":
+			response[1][2] = "0"
+			
 		#Verify the info is viable, if so then send out
 		if not parser.is_pubkey(response[1][0]):
 			return
@@ -99,12 +113,17 @@ func _on_add_receiver_menu_button_pressed(url, other_data):
 			return
 		if not parser.is_comb(response[1][2]):
 			return
+		
+			
+		if not check_overspend(float(response[1][1]+"."+response[1][2])):
+			popups.open("text", ["Overspend!", "You cannot spend more COMB than you own!", "Okay", null])
+			return
 			
 			
 		#assemble new_add
 		var new_add = response[1][0]#pubkey
-		#Add zeros
 		
+		#Add zeros
 		while response[1][2].length() < 8:
 			response[1][2] += "0"
 			
@@ -118,6 +137,7 @@ func _on_add_receiver_menu_button_pressed(url, other_data):
 		#print(dec)
 		
 		new_add+=dec
+		
 			
 		#print("/stack/multipaydata/"+pubkey+"/"+change+"/"+stack+new_add)
 		

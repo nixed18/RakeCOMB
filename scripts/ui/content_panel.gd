@@ -12,6 +12,8 @@ onready var sub_menus = {
 	"/sign/pay/" : $tx_sign,
 	"/sign/from/" : $change_add,
 	"/sign/multipay/" : $multipay,
+	"/export/index.html" : $export,
+	"/export/history/" : $export,
 	}
 
 # Called when the node enters the scene tree for the first time.

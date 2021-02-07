@@ -2,6 +2,7 @@ extends PanelContainer
 
 var dark_panel = preload("res://pieces/account_entry_dark_panel.tres")
 var dark_colour = Color( 0.88, 0.88, 0.88, 0.5 )
+var less_dark = Color( 1.0, 1.0, 1.0, 0.7 )
 
 #signal sweep_button_pressed(url, ext)
 signal account_button_pressed(url, ext)
@@ -44,6 +45,14 @@ onready var change_button = $VBoxContainer/change_box/change_button
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
+	
+func toggle(button, onoff):
+	if onoff:
+		button.modulate.a=1.0
+		button.disabled = false
+	else:
+		button.modulate.a=0.0
+		button.disabled = true
 
 #WALLET
 func setup_for_wallet(content):
@@ -59,10 +68,15 @@ func setup_for_wallet(content):
 	pubkey_entry.text = content
 	balance_entry.text = balance+" COMB"
 	
+	toggle(active_spend_button, false)
+	toggle(pay_button, false)
+	
 	if balance != "0.00000000":
 		if spend_url == "" and spend_funder == "":
-			pay_button.show()
+			toggle(pay_button, true)
 			pay_button.other_data = pubkey
+			#toggle(active_spend_button, false)
+			#active_spend_button.disabled = true
 	
 #	if content[2]:
 #		pay_button.show()
@@ -70,8 +84,10 @@ func setup_for_wallet(content):
 		
 	#active spend
 	if not spend_url == "":
-		pay_button.hide()
-		active_spend_button.show()
+		toggle(pay_button, false)
+		#pay_button.disabled = true
+		toggle(active_spend_button, true)
+		#active_spend_button.disabled = false
 		tx_id_button.text = "View TX Data - "+spend_id
 		tx_id_button.other_data = spend_url
 		if spend_funder == "":
@@ -89,8 +105,10 @@ func setup_for_wallet(content):
 	else:
 		#No spend, but address commited
 		if spend_funder != "":
-			pay_button.hide()
-			active_spend_button.show()
+			toggle(pay_button, false)
+			#pay_button.disabled = true
+			toggle(active_spend_button, true)
+			#active_spend_button.disabled = false
 			tx_id_button.text = "TX Data Not Found"
 			#tx_id_button.other_data = content[3][0][0]
 			#Also change font colour, but code that later

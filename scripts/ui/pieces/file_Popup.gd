@@ -8,8 +8,6 @@ var f_ext = "dat"
 var selected_path = null
 var count_max = 500
 
-var d_path = null
-
 
 onready var title = $Panel/Panel/title
 onready var main = $Panel/Panel/response_text
@@ -20,16 +18,9 @@ onready var file_holder = $Panel/Panel2/ScrollContainer/file_holder
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	d_path_setup()
 	hide()
 
-func d_path_setup():
-	#print(OS.get_executable_path().get_file())
-	if OS.get_executable_path().get_file() == "Godot_v3.2.2-stable_win64.exe":
-		d_path = "res://"
-	else:
-		d_path = OS.get_executable_path().get_base_dir()
-	#print(d_path)
+
 		
 
 func open(details):
@@ -49,7 +40,7 @@ func open(details):
 	else:
 		no_button.hide()
 		
-	pull_files(d_path, f_ext)
+	pull_files(fileman.d_path, f_ext)
 	selected_path = null
 		
 	show()

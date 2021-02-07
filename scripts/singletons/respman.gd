@@ -18,40 +18,43 @@ func process_response(response_array):
 	
 	#I know this is sub-optimal, shutup
 	if type == "/":
-		output = yield(parser.homepage_protocol(content), "completed") #[in_sync, fingerprint, commit_size, token_total, btc_block, tokens_remaining]
+		output = parser.homepage_protocol(content)#[in_sync, fingerprint, commit_size, token_total, btc_block, tokens_remaining]
 
 	elif type == "/export/save/":
-		output = yield(parser.save_protocol(content), "completed")
+		output = parser.save_protocol(content)
 	
 	elif type == "/utxo/bisect/b":
-		output = yield(parser.validate_protocol(content), "completed")
+		output = parser.validate_protocol(content)
 	
 	elif type == "/shutdown":
-		output = yield(parser.shutdown_protocol(content), "completed")
+		output = parser.shutdown_protocol(content)
 		
 	elif type == "/wallet/":
-		output = yield(parser.wallet_protocol(content), "completed")
+		output = parser.wallet_protocol(content)
 	
 	elif type == "/wallet/stealth/":
-		output = yield(parser.stealth_protocol(content), "completed")
+		output = parser.stealth_protocol(content)
 		
 	elif type == "/import/":
-		output = yield(parser.import_protocol(content), "completed")
+		output = parser.import_protocol(content)
 		
 	elif type == "/sign/pay/":
-		output = yield(parser.txsign_protocol(content), "completed")
+		output = parser.txsign_protocol(content)
 		
 	elif type == "/tx/recv/":
-		output = yield(parser.txrecv_protocol(content), "completed")
+		output = parser.txrecv_protocol(content)
 		
 	elif type == "/sign/from/":
-		output = yield(parser.change_protocol(content), "completed")
+		output = parser.change_protocol(content)
 	
 	elif type == "/sign/multipay/":
-		output = yield(parser.multipay_protocol(content), "completed")
+		output = parser.multipay_protocol(content)
 	
 	elif type == "/stack/multipaydata/":
-		output = yield(parser.multipaydata_protocol(content), "completed")
+		output = parser.multipaydata_protocol(content)
+		
+	elif type == "/export/history/":
+		output = content
 
 		
 	emit_signal("response_processed", output)

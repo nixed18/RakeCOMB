@@ -13,10 +13,10 @@ onready var nats_line = $Panel/VBoxContainer/HBoxContainer4/HBoxContainer2/nats_
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hide()
-	clear()
 
 
 func open(details):
+	clear()
 	show()
 
 func clear():
@@ -25,7 +25,7 @@ func clear():
 	nats_line.text = ""
 
 func _on_yes_button_menu_button_pressed(url, other_data):
-		emit_signal("response", true, [address_line.text, comb_line.text, nats_line.text])
+		emit_signal("response", true, [address_line.text.to_upper(), comb_line.text, nats_line.text])
 
 func _on_no_button_menu_button_pressed(url, other_data):
 	emit_signal("response", false, null)
