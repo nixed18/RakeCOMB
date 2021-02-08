@@ -122,7 +122,7 @@ corner_detail = 20
 
 [sub_resource type="StyleBoxEmpty" id=16]
 
-[sub_resource type="StyleBoxFlat" id=37]
+[sub_resource type="StyleBoxFlat" id=17]
 content_margin_left = 2.0
 content_margin_right = 2.0
 content_margin_top = 3.0
@@ -134,42 +134,42 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 20
 
-[sub_resource type="DynamicFontData" id=33]
+[sub_resource type="DynamicFontData" id=18]
 font_path = "res://fonts/Roboto-Medium.ttf"
 
-[sub_resource type="DynamicFont" id=34]
+[sub_resource type="DynamicFont" id=19]
 size = 14
 use_mipmaps = true
 use_filter = true
-font_data = SubResource( 33 )
+font_data = SubResource( 18 )
 
-[sub_resource type="DynamicFontData" id=35]
+[sub_resource type="DynamicFontData" id=20]
 font_path = "res://fonts/Roboto-Italic.ttf"
 
-[sub_resource type="DynamicFont" id=36]
+[sub_resource type="DynamicFont" id=21]
 size = 13
 use_mipmaps = true
 use_filter = true
-font_data = SubResource( 35 )
+font_data = SubResource( 20 )
 
-[sub_resource type="DynamicFontData" id=27]
+[sub_resource type="DynamicFontData" id=22]
 font_path = "res://fonts/Roboto-Bold.ttf"
 
-[sub_resource type="DynamicFont" id=29]
+[sub_resource type="DynamicFont" id=23]
 size = 12
 use_mipmaps = true
 use_filter = true
-font_data = SubResource( 27 )
+font_data = SubResource( 22 )
 
-[sub_resource type="DynamicFont" id=28]
+[sub_resource type="DynamicFont" id=24]
 size = 14
 use_mipmaps = true
 use_filter = true
-font_data = SubResource( 27 )
+font_data = SubResource( 22 )
 
-[sub_resource type="StyleBoxEmpty" id=19]
+[sub_resource type="StyleBoxEmpty" id=25]
 
-[sub_resource type="StyleBoxFlat" id=20]
+[sub_resource type="StyleBoxFlat" id=26]
 content_margin_left = 10.0
 content_margin_right = 10.0
 content_margin_top = 10.0
@@ -181,55 +181,55 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 20
 
-[sub_resource type="DynamicFontData" id=21]
+[sub_resource type="DynamicFontData" id=27]
 font_path = "res://fonts/Roboto-Medium.ttf"
 
-[sub_resource type="DynamicFont" id=22]
+[sub_resource type="DynamicFont" id=28]
 size = 14
 use_mipmaps = true
 use_filter = true
-font_data = SubResource( 21 )
+font_data = SubResource( 27 )
 
-[sub_resource type="DynamicFontData" id=17]
+[sub_resource type="DynamicFontData" id=29]
 font_path = "res://fonts/Roboto-Medium.ttf"
 
-[sub_resource type="DynamicFont" id=18]
+[sub_resource type="DynamicFont" id=30]
 size = 13
 use_mipmaps = true
 use_filter = true
 extra_spacing_bottom = -5
-font_data = SubResource( 17 )
-
-[sub_resource type="DynamicFontData" id=23]
-font_path = "res://fonts/Roboto-Italic.ttf"
-
-[sub_resource type="DynamicFont" id=24]
-size = 14
-use_mipmaps = true
-use_filter = true
-font_data = SubResource( 23 )
-
-[sub_resource type="DynamicFontData" id=25]
-font_path = "res://fonts/Roboto-Medium.ttf"
-
-[sub_resource type="DynamicFont" id=26]
-size = 14
-use_mipmaps = true
-use_filter = true
-font_data = SubResource( 25 )
-
-[sub_resource type="StyleBoxEmpty" id=30]
+font_data = SubResource( 29 )
 
 [sub_resource type="DynamicFontData" id=31]
-font_path = "res://fonts/Roboto-Medium.ttf"
+font_path = "res://fonts/Roboto-Italic.ttf"
 
 [sub_resource type="DynamicFont" id=32]
 size = 14
 use_mipmaps = true
 use_filter = true
+font_data = SubResource( 31 )
+
+[sub_resource type="DynamicFontData" id=33]
+font_path = "res://fonts/Roboto-Medium.ttf"
+
+[sub_resource type="DynamicFont" id=34]
+size = 14
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 33 )
+
+[sub_resource type="StyleBoxEmpty" id=35]
+
+[sub_resource type="DynamicFontData" id=36]
+font_path = "res://fonts/Roboto-Medium.ttf"
+
+[sub_resource type="DynamicFont" id=37]
+size = 14
+use_mipmaps = true
+use_filter = true
 extra_spacing_top = -5
 extra_spacing_bottom = -5
-font_data = SubResource( 31 )
+font_data = SubResource( 36 )
 
 [node name="main_GUI" type="Control"]
 anchor_right = 1.0
@@ -327,7 +327,6 @@ __meta__ = {
 }
 
 [node name="home" type="Control" parent="content_panel"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 7 )
@@ -356,7 +355,7 @@ __meta__ = {
 margin_left = 20.0
 margin_top = 10.0
 margin_right = 640.0
-margin_bottom = 316.0
+margin_bottom = 321.0
 custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -400,7 +399,7 @@ margin_bottom = 59.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_fonts/font = SubResource( 7 )
-text = "RakeCOMB GUI Wrapper v0.2.0"
+text = "RakeCOMB GUI Wrapper v0.2.1"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -409,7 +408,7 @@ __meta__ = {
 [node name="button_box" type="PanelContainer" parent="content_panel/home/main_fade_box/VBoxContainer"]
 margin_top = 79.0
 margin_right = 620.0
-margin_bottom = 110.0
+margin_bottom = 115.0
 custom_styles/panel = SubResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -418,28 +417,26 @@ __meta__ = {
 [node name="HBoxContainer2" type="HBoxContainer" parent="content_panel/home/main_fade_box/VBoxContainer/button_box"]
 margin_left = 20.0
 margin_right = 600.0
-margin_bottom = 21.0
+margin_bottom = 26.0
 custom_constants/separation = 10
 alignment = 1
 
 [node name="deciders_purse" parent="content_panel/home/main_fade_box/VBoxContainer/button_box/HBoxContainer2" instance=ExtResource( 9 )]
-margin_left = 170.0
-margin_right = 286.0
-margin_bottom = 21.0
+margin_left = 145.0
+margin_right = 287.0
 text = "Deciders Purse"
 my_url = "/purse/"
 
 [node name="basic_contract" parent="content_panel/home/main_fade_box/VBoxContainer/button_box/HBoxContainer2" instance=ExtResource( 9 )]
-margin_left = 296.0
-margin_right = 409.0
-margin_bottom = 21.0
+margin_left = 297.0
+margin_right = 434.0
 text = "Basic Contract"
 my_url = "/basiccontract/"
 
 [node name="fingeprint_box2" type="PanelContainer" parent="content_panel/home/main_fade_box/VBoxContainer"]
-margin_top = 110.0
+margin_top = 115.0
 margin_right = 620.0
-margin_bottom = 183.0
+margin_bottom = 188.0
 custom_styles/panel = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -466,9 +463,9 @@ margin_bottom = 53.0
 text = "Fingerprint of commitment set of size 2997620"
 
 [node name="stats_box2" type="PanelContainer" parent="content_panel/home/main_fade_box/VBoxContainer"]
-margin_top = 183.0
+margin_top = 188.0
 margin_right = 620.0
-margin_bottom = 280.0
+margin_bottom = 285.0
 custom_styles/panel = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -521,15 +518,14 @@ Synced to Bitcoin block: 669975
 readonly = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="content_panel/home/main_fade_box/VBoxContainer"]
-margin_top = 280.0
+margin_top = 285.0
 margin_right = 620.0
-margin_bottom = 301.0
+margin_bottom = 311.0
 alignment = 1
 
 [node name="validate_database" parent="content_panel/home/main_fade_box/VBoxContainer/HBoxContainer" instance=ExtResource( 9 )]
-margin_left = 241.0
-margin_right = 379.0
-margin_bottom = 21.0
+margin_left = 225.0
+margin_right = 394.0
 text = "Validate Database"
 my_url = "/utxo/bisect/b"
 
@@ -685,6 +681,7 @@ my_url = "/import/"
 other_data = "general"
 
 [node name="export" type="Control" parent="content_panel"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 17 )
@@ -738,8 +735,8 @@ margin_bottom = 57.0
 rect_min_size = Vector2( 600, 0 )
 custom_styles/read_only = SubResource( 15 )
 custom_styles/focus = SubResource( 16 )
-custom_styles/normal = SubResource( 37 )
-custom_fonts/font = SubResource( 34 )
+custom_styles/normal = SubResource( 17 )
+custom_fonts/font = SubResource( 19 )
 custom_colors/font_color_uneditable = Color( 0.886275, 0.886275, 0.886275, 1 )
 align = 1
 placeholder_text = "Enter the address you wish to export for"
@@ -775,7 +772,7 @@ margin_right = 688.0
 margin_bottom = 122.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 36 )
+custom_fonts/font = SubResource( 21 )
 text = "Note: It is not recommended to export a complete history, please send each receiver their own history."
 align = 1
 valign = 1
@@ -830,7 +827,7 @@ margin_right = 879.0
 margin_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 23 )
 text = "Coin history for"
 align = 1
 
@@ -838,7 +835,7 @@ align = 1
 margin_top = 15.0
 margin_right = 879.0
 margin_bottom = 42.0
-custom_fonts/font = SubResource( 28 )
+custom_fonts/font = SubResource( 24 )
 text = "3FC2CBCB0117BB3A9226781AD0D2A3760C3B02D00321247A7B73D404F656FB8B"
 
 [node name="history_entry" type="TextEdit" parent="content_panel/export/history_box"]
@@ -850,9 +847,9 @@ margin_right = -10.0
 margin_bottom = -55.0
 rect_min_size = Vector2( 0, 200 )
 focus_mode = 0
-custom_styles/read_only = SubResource( 19 )
-custom_styles/normal = SubResource( 20 )
-custom_fonts/font = SubResource( 22 )
+custom_styles/read_only = SubResource( 25 )
+custom_styles/normal = SubResource( 26 )
+custom_fonts/font = SubResource( 28 )
 custom_colors/font_color_readonly = Color( 1, 1, 1, 1 )
 readonly = true
 wrap_enabled = true
@@ -933,7 +930,7 @@ margin_right = 313.0
 margin_bottom = 89.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 18 )
+custom_fonts/font = SubResource( 30 )
 text = "Sync with the BTC chain and compare against another synced peer.
 If your block numbers do not match, make sure you are both fully synced with the BTC chain.
 If your block numbers match, but there is a difference in the data below, there is a corruption."
@@ -951,9 +948,9 @@ margin_top = 97.0
 margin_right = -23.0
 margin_bottom = -40.0
 focus_mode = 0
-custom_styles/read_only = SubResource( 19 )
-custom_styles/normal = SubResource( 20 )
-custom_fonts/font = SubResource( 22 )
+custom_styles/read_only = SubResource( 25 )
+custom_styles/normal = SubResource( 26 )
+custom_fonts/font = SubResource( 28 )
 custom_colors/font_color_readonly = Color( 1, 1, 1, 1 )
 readonly = true
 __meta__ = {
@@ -996,7 +993,7 @@ margin_right = 313.0
 margin_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 24 )
+custom_fonts/font = SubResource( 32 )
 text = "Note: This tool is incomplete. For a complete validation, please use the native Haircomb validator"
 align = 1
 valign = 1
@@ -1273,7 +1270,7 @@ margin_right = 483.0
 margin_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 26 )
+custom_fonts/font = SubResource( 34 )
 text = "Add Receiving Address"
 my_url = "/sign/multipay/"
 
@@ -1293,7 +1290,7 @@ __meta__ = {
 [node name="source_acc" parent="content_panel/multipay/main_fade_box/source" instance=ExtResource( 8 )]
 margin_right = 686.0
 margin_bottom = 27.0
-custom_fonts/font = SubResource( 28 )
+custom_fonts/font = SubResource( 24 )
 text = "3FC2CBCB0117BB3A9226781AD0D2A3760C3B02D00321247A7B73D404F656FB8B"
 
 [node name="source_text" type="Label" parent="content_panel/multipay/main_fade_box/source"]
@@ -1302,7 +1299,7 @@ margin_right = 686.0
 margin_bottom = 42.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 23 )
 text = "will fund the transaction with 10.57 COMB"
 align = 1
 
@@ -1326,7 +1323,7 @@ margin_right = 686.0
 margin_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 23 )
 text = "0.57 COMB will be spent to 3 destinations. The remaining 10 COMB will be sent to:"
 align = 1
 
@@ -1334,7 +1331,7 @@ align = 1
 margin_top = 15.0
 margin_right = 686.0
 margin_bottom = 42.0
-custom_fonts/font = SubResource( 28 )
+custom_fonts/font = SubResource( 24 )
 text = "3FC2CBCB0117BB3A9226781AD0D2A3760C3B02D00321247A7B73D404F656FB8B"
 
 [node name="execute" parent="content_panel/multipay/main_fade_box" instance=ExtResource( 9 )]
@@ -1348,7 +1345,7 @@ margin_right = 83.0
 margin_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 26 )
+custom_fonts/font = SubResource( 34 )
 text = "Execute Payment"
 my_url = "/sign/pay/"
 
@@ -1402,7 +1399,7 @@ margin_right = 313.5
 margin_bottom = 106.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 18 )
+custom_fonts/font = SubResource( 30 )
 text = "Secret addresses for account #
 To claim haircomb, send 330 sats to a mine address.
 If your transaction is at the top of the block, you get the COMB
@@ -1496,7 +1493,7 @@ margin_right = 313.5
 margin_bottom = 106.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 18 )
+custom_fonts/font = SubResource( 30 )
 text = "TX ID:
 Pay to: CFFC9ADBE4F62C8F0D55D7AB945C925434AC1F4F51EA5E86BAB72148B31A10AE"
 align = 1
@@ -1529,7 +1526,7 @@ margin_right = -10.0
 margin_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_styles/bg = SubResource( 30 )
+custom_styles/bg = SubResource( 35 )
 scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1563,14 +1560,14 @@ margin_left = 37.0
 margin_top = 6.0
 margin_right = 75.0
 margin_bottom = 13.0
-custom_fonts/font = SubResource( 32 )
+custom_fonts/font = SubResource( 37 )
 text = "TX ID:"
 
 [node name="tx_id" parent="content_panel/tx_sign/main_fade_box/HBoxContainer" instance=ExtResource( 8 )]
 margin_left = 75.0
 margin_right = 583.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 32 )
+custom_fonts/font = SubResource( 37 )
 text = "6df522ea340320509d1a4b1e6cd4fb6450e1d76a1d03f7bf3cbf19d9215a500b"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="content_panel/tx_sign/main_fade_box"]
@@ -1593,14 +1590,14 @@ margin_left = 40.0
 margin_top = 6.0
 margin_right = 103.0
 margin_bottom = 13.0
-custom_fonts/font = SubResource( 32 )
+custom_fonts/font = SubResource( 37 )
 text = "Payed to: "
 
 [node name="pay_to" parent="content_panel/tx_sign/main_fade_box/HBoxContainer2" instance=ExtResource( 8 )]
 margin_left = 103.0
 margin_right = 648.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 32 )
+custom_fonts/font = SubResource( 37 )
 text = "CFFC9ADBE4F62C8F0D55D7AB945C925434AC1F4F51EA5E86BAB72148B31A10AE"
 
 [node name="instruction_button" parent="content_panel/tx_sign/main_fade_box" instance=ExtResource( 9 )]
