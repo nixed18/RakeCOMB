@@ -6,6 +6,8 @@ signal connection_established()
 var pending_connection = false
 var pending_request = null
 
+var connected = false
+
 onready var http = HTTPClient.new()
 
 
@@ -32,9 +34,9 @@ func boot():
 func connect_to(ip, port):
 	var err = http.connect_to_host(ip, port)
 	if err != 0:
-		print("Initial Connection Error: ", err)
+		debug.p(["Initial Connection Error: ", err])
 		return
-	print("Connecting . . .")
+	debug.p("Connecting . . .")
 	pending_connection = true
 	
 	return check_connect_status()
@@ -44,7 +46,7 @@ func check_connect_status():
 	http.poll()
 	var status = http.get_status() 
 	if status == HTTPClient.STATUS_CONNECTED:
-		print("Connected")
+		debug.p("Connected")
 		pending_connection = false
 		emit_signal("connection_established")
 		return true
@@ -61,12 +63,12 @@ func send_request(url, ext):
 	var out_url = url + ext
 	
 	if pending_request != null:
-		print("Request Rejected: Response in Progress")
+		debug.p("Request Rejected: Response in Progress")
 		return
 		
 	var err = http.request(HTTPClient.METHOD_GET, out_url, [])
 	if err != 0:
-		print("Request Error: ", err)
+		debug.p(["Request Error: ", err])
 		return	
 	pending_request = url
 		
@@ -76,12 +78,12 @@ func send_post(url, ext, post):
 	var out_url = url + ext
 	
 	if pending_request != null:
-		print("Request Rejected: Response in Progress")
+		debug.p("Request Rejected: Response in Progress")
 		return
 		
 	var err = http.request(HTTPClient.METHOD_POST, out_url, post[0], post[1])
 	if err != 0:
-		print("Request Error: ", err)
+		debug.p(["Request Error: ", err])
 		return	
 	pending_request = url
 		
@@ -94,13 +96,13 @@ func check_for_response():
 		
 func get_response():
 	var headers = http.get_response_headers_as_dictionary()
-	print("code: ", http.get_response_code())
+	debug.p(["code: ", http.get_response_code()])
 
 	if http.is_response_chunked():
-		print("Response is chunked!")
+		debug.p("Response is chunked!")
 	else:
 		var bl = http.get_response_body_length()
-		print("Response Length: ", bl)
+		debug.p(["Response Length: ", bl])
 		
 	var data_array = PoolByteArray()
 	
@@ -117,9 +119,15 @@ func get_response():
 	return output
 		
 		
+func reconnect():
+	http.close()
+	connect_to("127.0.0.1", 2121)
+	
+		
 func _process(_delta):
 	if pending_connection:
-		check_connect_status()
+		reconnect()
+		#check_connect_status()
 	elif pending_request:
 		if check_for_response():
 			respman.process_response(get_response())

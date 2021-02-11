@@ -12,7 +12,7 @@ func _ready():
 func d_path_setup():
 	#print(OS.get_executable_path().get_file())
 	if OS.get_executable_path().get_file() == "Godot_v3.2.2-stable_win64.exe":
-		d_path = "res://"
+		d_path = "C:/Users/Denxi/Documents/combfullui"
 	else:
 		d_path = OS.get_executable_path().get_base_dir()
 	#print(d_path)

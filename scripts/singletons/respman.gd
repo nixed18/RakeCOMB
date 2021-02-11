@@ -15,7 +15,6 @@ func process_response(response_array):
 	var content = response_array[1].get_string_from_utf8()
 	#print(content)
 	var output
-	
 	#I know this is sub-optimal, shutup
 	if type == "/":
 		output = parser.homepage_protocol(content)#[in_sync, fingerprint, commit_size, token_total, btc_block, tokens_remaining]
@@ -23,7 +22,7 @@ func process_response(response_array):
 	elif type == "/export/save/":
 		output = parser.save_protocol(content)
 	
-	elif type == "/utxo/bisect/b":
+	elif type == "/utxo/bisect/":
 		output = parser.validate_protocol(content)
 	
 	elif type == "/shutdown":
@@ -33,7 +32,10 @@ func process_response(response_array):
 		output = parser.wallet_protocol(content)
 	
 	elif type == "/wallet/stealth/":
+		#print("!!!")
+		#print(OS.get_ticks_msec())
 		output = parser.stealth_protocol(content)
+		#print(OS.get_ticks_msec())
 		
 	elif type == "/import/":
 		output = parser.import_protocol(content)

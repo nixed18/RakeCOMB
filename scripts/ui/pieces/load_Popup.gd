@@ -1,6 +1,6 @@
 extends Control
 
-signal response(response)
+signal response(response, data)
 
 onready var title = $Panel2/title
 onready var shadow = $Panel2/title/shadow

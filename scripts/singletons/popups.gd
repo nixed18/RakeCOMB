@@ -11,12 +11,14 @@ onready var types = {
 	"file_select" : $file_Popup,
 	"load" : $load_Popup,
 	"recv" : $recv_Popup,
+	"valid" : $valid_Popup,
 }
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	open("load", "CONNECTING")
+	pass
 
 func open(type, details):
 	if active == null:
@@ -47,4 +49,8 @@ func _on_line_Popup_response(response, data):
 
 
 func _on_recv_Popup_response(response, data):
+	emit_response(response, data)
+
+
+func _on_valid_Popup_response(response, data):
 	emit_response(response, data)

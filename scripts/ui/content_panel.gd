@@ -4,7 +4,7 @@ extends Panel
 onready var sub_menus = {
 	"/" : $home,
 	"/export/save/" : $save_as,
-	"/utxo/bisect/b" : $validator,
+	"/utxo/bisect/" : $validator,
 	"/wallet/" : $wallet,
 	"/wallet/stealth/" : $secret,
 	#"/wallet/generator" : $wallet,

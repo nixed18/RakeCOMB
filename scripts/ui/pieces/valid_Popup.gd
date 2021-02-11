@@ -3,10 +3,10 @@ extends Control
 signal response(response, data)
 
 onready var title = $Panel/Panel/title
-onready var main = $Panel/VBoxContainer/response_text
+onready var main = $Panel/TextEdit
 onready var yes_button = $Panel/HBoxContainer/yes_button
 onready var no_button = $Panel/HBoxContainer/no_button
-onready var line = $Panel/VBoxContainer/HBoxContainer/line_entry
+onready var inst2 = $Panel/instruct_2
 
 
 # Called when the node enters the scene tree for the first time.
@@ -15,9 +15,8 @@ func _ready():
 
 
 func open(details):
-	#[title_text, main_text, yes_text, no_text, line_edit text]
 	title.text = details[0]
-	main.text = details[1]
+	main.text = details[1][1]
 	
 	if details[2] != null:
 		yes_button.text = details[2]
@@ -31,15 +30,11 @@ func open(details):
 	else:
 		no_button.hide()
 		
-	line.text = details[4]
+	inst2.text = inst2.text.replace("LOCATOR", details[1][0])
 		
 	show()
 
 
 func _on_yes_button_menu_button_pressed(url, other_data):
-	if line.text != "":
-		emit_signal("response", true, line.text)
+		emit_signal("response", true, null)
 
-func _on_no_button_menu_button_pressed(url, other_data):
-	emit_signal("response", false, null)
-	

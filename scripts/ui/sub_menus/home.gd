@@ -20,7 +20,7 @@ func _on_launched(content):
 	synced.text = "Synced to Bitcoin block "+content[4]
 	mined.text = content[3]+" COMB have been mined"
 	remain.text = content[5]+" COMB remain"
-	validate_button.other_data = content[6]
+	validate_button.other_data = "b"+content[6]
 	
 	reset_main_box()
 	pass
@@ -32,7 +32,8 @@ func reset_main_box():
 
 
 func _on_validate_database_menu_button_pressed(url, other_data):
-	emit_signal("validate_requested", url, validate_button.other_data)
+	print([url, other_data])
+	emit_signal("validate_requested", url, other_data)
 	#USE LATER, FOR NOW JUST USE THE DEFAULT
 #	popups.open("line", ["Validate Database", "Choose a block", "Validate", "Cancel", validate_button.other_data])
 #	var response = yield(popups, "response") #[yesno, block_number]

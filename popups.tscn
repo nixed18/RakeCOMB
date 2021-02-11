@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://scripts/singletons/popups.gd" type="Script" id=1]
 [ext_resource path="res://pieces/text_Popup.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://pieces/content_button.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scripts/ui/pieces/file_Popup.gd" type="Script" id=6]
 [ext_resource path="res://pieces/recv_Popup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/ui/pieces/valid_Popup.gd" type="Script" id=8]
 [ext_resource path="res://textures/load_anim/basic/4.png" type="Texture" id=9]
 [ext_resource path="res://textures/load_anim/basic/5.png" type="Texture" id=10]
 [ext_resource path="res://textures/load_anim/basic/2.png" type="Texture" id=11]
@@ -135,6 +136,106 @@ animations = [ {
 "name": "default",
 "speed": 15.0
 } ]
+
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 0.968627, 0.105882, 0.635294, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=18]
+bg_color = Color( 0, 0, 0, 0.0862745 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_detail = 20
+
+[sub_resource type="DynamicFontData" id=19]
+font_path = "res://fonts/JosefinSans-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=20]
+size = 18
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 19 )
+
+[sub_resource type="StyleBoxFlat" id=21]
+bg_color = Color( 0, 0, 0, 0.0862745 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=22]
+bg_color = Color( 0.972549, 0.356863, 0.737255, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=23]
+content_margin_top = 5.0
+bg_color = Color( 0.96875, 0.261108, 0.698825, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=24]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color( 0.968627, 0.243137, 0.690196, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="DynamicFontData" id=25]
+font_path = "res://fonts/Roboto-Medium.ttf"
+
+[sub_resource type="DynamicFont" id=26]
+size = 18
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 25 )
+
+[sub_resource type="DynamicFontData" id=27]
+font_path = "res://fonts/Roboto-Medium.ttf"
+
+[sub_resource type="DynamicFont" id=28]
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 27 )
+
+[sub_resource type="StyleBoxEmpty" id=29]
+
+[sub_resource type="StyleBoxFlat" id=30]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 0, 0, 0, 0.0941176 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="DynamicFontData" id=31]
+font_path = "res://fonts/Roboto-Medium.ttf"
+
+[sub_resource type="DynamicFont" id=32]
+size = 11
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 31 )
 
 [node name="popups" type="CanvasLayer"]
 layer = 5
@@ -302,6 +403,7 @@ __meta__ = {
 custom_constants/separation = 8
 
 [node name="load_Popup" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
@@ -416,9 +518,165 @@ frames = SubResource( 16 )
 
 [node name="recv_Popup" parent="." instance=ExtResource( 7 )]
 visible = false
+
+[node name="valid_Popup" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="valid_Popup"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -468.0
+margin_top = 33.0
+margin_right = 468.0
+margin_bottom = -34.0
+custom_styles/panel = SubResource( 17 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="valid_Popup/Panel"]
+anchor_right = 1.0
+margin_bottom = 27.0
+custom_styles/panel = SubResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="Label" parent="valid_Popup/Panel/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -39.0
+margin_top = -8.5
+margin_right = 39.0
+margin_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 20 )
+text = "Warning!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="shadow" type="Panel" parent="valid_Popup/Panel"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 6.0
+margin_bottom = 6.0
+custom_styles/panel = SubResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="valid_Popup/Panel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -105.0
+margin_top = -42.0
+margin_right = 105.0
+margin_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/separation = 10
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="yes_button" parent="valid_Popup/Panel/HBoxContainer" instance=ExtResource( 5 )]
+custom_styles/hover = SubResource( 22 )
+custom_styles/pressed = SubResource( 23 )
+custom_styles/normal = SubResource( 24 )
+custom_fonts/font = SubResource( 26 )
+text = "YES"
+my_url = "true"
+
+[node name="no_button" parent="valid_Popup/Panel/HBoxContainer" instance=ExtResource( 5 )]
+margin_left = 110.0
+margin_right = 210.0
+custom_styles/hover = SubResource( 22 )
+custom_styles/pressed = SubResource( 23 )
+custom_styles/normal = SubResource( 24 )
+custom_fonts/font = SubResource( 26 )
+text = "NO"
+my_url = "false"
+
+[node name="instruct_1" type="Label" parent="valid_Popup/Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -311.0
+margin_top = 43.0
+margin_right = 311.0
+margin_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 28 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Manually check that the following information is true.
+(DO NOT PAY TO ANY ADDRESSES)"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="instruct_2" type="Label" parent="valid_Popup/Panel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -403.0
+margin_top = -101.0
+margin_right = 402.0
+margin_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 28 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "If any of the information above is not real, or if your peer has also visited LOCATOR and has TRUE information that is not listed here, your commits.db is corrupt."
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="TextEdit" parent="valid_Popup/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 27.0
+margin_top = 100.0
+margin_right = -23.0
+margin_bottom = -123.0
+focus_mode = 0
+custom_styles/read_only = SubResource( 29 )
+custom_styles/normal = SubResource( 30 )
+custom_fonts/font = SubResource( 32 )
+custom_colors/font_color_readonly = Color( 1, 1, 1, 1 )
+readonly = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="response" from="text_Popup" to="." method="_on_text_Popup_response"]
 [connection signal="response" from="line_Popup" to="." method="_on_line_Popup_response"]
 [connection signal="response" from="file_Popup" to="." method="_on_line_Popup_response"]
 [connection signal="menu_button_pressed" from="file_Popup/Panel/HBoxContainer/yes_button" to="file_Popup" method="_on_yes_button_menu_button_pressed"]
 [connection signal="menu_button_pressed" from="file_Popup/Panel/HBoxContainer/no_button" to="file_Popup" method="_on_no_button_menu_button_pressed"]
 [connection signal="response" from="recv_Popup" to="." method="_on_recv_Popup_response"]
+[connection signal="response" from="valid_Popup" to="." method="_on_valid_Popup_response"]
+[connection signal="menu_button_pressed" from="valid_Popup/Panel/HBoxContainer/yes_button" to="valid_Popup" method="_on_yes_button_menu_button_pressed"]
+[connection signal="menu_button_pressed" from="valid_Popup/Panel/HBoxContainer/no_button" to="valid_Popup" method="_on_no_button_menu_button_pressed"]

@@ -1,6 +1,6 @@
 extends Control
 
-signal response(response)
+signal response(response, data)
 
 onready var title = $Panel/VBoxContainer/Panel/title
 onready var main = $Panel/VBoxContainer/HBoxContainer2/response_text
@@ -30,6 +30,8 @@ func open(details):
 	else:
 		no_button.hide()
 		
+	show()
+	hide()
 	show()
 
 

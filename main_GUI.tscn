@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://scripts/ui/main_GUI.gd" type="Script" id=1]
 [ext_resource path="res://scripts/ui/content_panel.gd" type="Script" id=2]
@@ -150,6 +150,7 @@ font_path = "res://fonts/Roboto-Italic.ttf"
 size = 13
 use_mipmaps = true
 use_filter = true
+extra_spacing_top = 3
 font_data = SubResource( 20 )
 
 [sub_resource type="DynamicFontData" id=22]
@@ -200,14 +201,19 @@ use_filter = true
 extra_spacing_bottom = -5
 font_data = SubResource( 29 )
 
-[sub_resource type="DynamicFontData" id=31]
-font_path = "res://fonts/Roboto-Italic.ttf"
+[sub_resource type="StyleBoxEmpty" id=31]
 
-[sub_resource type="DynamicFont" id=32]
-size = 14
-use_mipmaps = true
-use_filter = true
-font_data = SubResource( 31 )
+[sub_resource type="StyleBoxFlat" id=32]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 0, 0, 0, 0.0941176 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
 
 [sub_resource type="DynamicFontData" id=33]
 font_path = "res://fonts/Roboto-Medium.ttf"
@@ -218,18 +224,52 @@ use_mipmaps = true
 use_filter = true
 font_data = SubResource( 33 )
 
-[sub_resource type="StyleBoxEmpty" id=35]
+[sub_resource type="DynamicFontData" id=35]
+font_path = "res://fonts/Roboto-Italic.ttf"
 
-[sub_resource type="DynamicFontData" id=36]
+[sub_resource type="DynamicFont" id=36]
+size = 14
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 35 )
+
+[sub_resource type="DynamicFontData" id=37]
 font_path = "res://fonts/Roboto-Medium.ttf"
 
-[sub_resource type="DynamicFont" id=37]
+[sub_resource type="DynamicFont" id=38]
+size = 14
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 37 )
+
+[sub_resource type="DynamicFont" id=39]
+size = 14
+use_mipmaps = true
+use_filter = true
+extra_spacing_bottom = -5
+font_data = SubResource( 29 )
+
+[sub_resource type="DynamicFontData" id=40]
+font_path = "res://fonts/Roboto-Medium.ttf"
+
+[sub_resource type="DynamicFont" id=41]
+size = 14
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 40 )
+
+[sub_resource type="StyleBoxEmpty" id=42]
+
+[sub_resource type="DynamicFontData" id=43]
+font_path = "res://fonts/Roboto-Medium.ttf"
+
+[sub_resource type="DynamicFont" id=44]
 size = 14
 use_mipmaps = true
 use_filter = true
 extra_spacing_top = -5
 extra_spacing_bottom = -5
-font_data = SubResource( 36 )
+font_data = SubResource( 43 )
 
 [node name="main_GUI" type="Control"]
 anchor_right = 1.0
@@ -399,7 +439,7 @@ margin_bottom = 59.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_fonts/font = SubResource( 7 )
-text = "RakeCOMB GUI Wrapper v0.2.1"
+text = "RakeCOMB GUI Wrapper v0.3.0"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -499,9 +539,9 @@ text = "11259172.51761682 COMB remain"
 
 [node name="TextEdit" type="TextEdit" parent="content_panel/home/main_fade_box/VBoxContainer"]
 visible = false
-margin_top = 249.0
+margin_top = 285.0
 margin_right = 620.0
-margin_bottom = 399.0
+margin_bottom = 435.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 0, 150 )
@@ -527,7 +567,7 @@ alignment = 1
 margin_left = 225.0
 margin_right = 394.0
 text = "Validate Database"
-my_url = "/utxo/bisect/b"
+my_url = "/utxo/bisect/"
 
 [node name="save_as" type="Control" parent="content_panel"]
 visible = false
@@ -710,7 +750,7 @@ __meta__ = {
 margin_left = 20.0
 margin_top = 10.0
 margin_right = 708.0
-margin_bottom = 132.0
+margin_bottom = 135.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_constants/separation = 11
@@ -769,7 +809,7 @@ other_data = "x"
 [node name="note" type="Label" parent="content_panel/export/select_box/select_box"]
 margin_top = 105.0
 margin_right = 688.0
-margin_bottom = 122.0
+margin_bottom = 125.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_fonts/font = SubResource( 21 )
@@ -890,6 +930,7 @@ __meta__ = {
 }
 
 [node name="main_fade_box" type="Panel" parent="content_panel/validator"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 25.0
@@ -948,9 +989,9 @@ margin_top = 97.0
 margin_right = -23.0
 margin_bottom = -40.0
 focus_mode = 0
-custom_styles/read_only = SubResource( 25 )
-custom_styles/normal = SubResource( 26 )
-custom_fonts/font = SubResource( 28 )
+custom_styles/read_only = SubResource( 31 )
+custom_styles/normal = SubResource( 32 )
+custom_fonts/font = SubResource( 34 )
 custom_colors/font_color_readonly = Color( 1, 1, 1, 1 )
 readonly = true
 __meta__ = {
@@ -993,8 +1034,142 @@ margin_right = 313.0
 margin_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 32 )
+custom_fonts/font = SubResource( 36 )
 text = "Note: This tool is incomplete. For a complete validation, please use the native Haircomb validator"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="main_fade_box3" type="Panel" parent="content_panel/validator"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = 25.0
+margin_right = -25.0
+margin_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="Label" parent="content_panel/validator/main_fade_box3"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -428.0
+margin_top = 15.0
+margin_right = 428.0
+margin_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Validating BTC Blocks 0 to 668672"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rows" type="Panel" parent="content_panel/validator/main_fade_box3"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -416.5
+margin_top = 111.0
+margin_right = 417.5
+margin_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="content_panel/validator/main_fade_box3/rows"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rows_list" type="VBoxContainer" parent="content_panel/validator/main_fade_box3/rows/ScrollContainer"]
+alignment = 1
+
+[node name="buttons" type="HBoxContainer" parent="content_panel/validator/main_fade_box3"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -117.0
+margin_top = 82.0
+margin_right = 117.0
+margin_bottom = 103.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="all_diff" parent="content_panel/validator/main_fade_box3/buttons" instance=ExtResource( 9 )]
+margin_right = 113.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 38 )
+text = "All Rows Differ"
+my_url = "/utxo/bisect/"
+
+[node name="all_same" parent="content_panel/validator/main_fade_box3/buttons" instance=ExtResource( 9 )]
+margin_left = 117.0
+margin_right = 234.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 38 )
+text = "All Rows Match"
+my_url = "/utxo/bisect/"
+
+[node name="copy" parent="content_panel/validator/main_fade_box3/buttons" instance=ExtResource( 9 )]
+margin_left = 238.0
+margin_right = 371.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 38 )
+text = "Copy to Clipboard"
+my_url = "copy"
+
+[node name="instructions" type="Label" parent="content_panel/validator/main_fade_box3"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -312.5
+margin_top = 42.0
+margin_right = 313.5
+margin_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 30 )
+text = "Compare against a peer by clicking the same button on both nodes.
+Make sure you are both comparing information from the same block."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="locator" type="Label" parent="content_panel/validator/main_fade_box3"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -313.0
+margin_top = -33.0
+margin_right = 313.0
+margin_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 39 )
+text = "Locator is b00668972"
 align = 1
 valign = 1
 __meta__ = {
@@ -1270,7 +1445,7 @@ margin_right = 483.0
 margin_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 34 )
+custom_fonts/font = SubResource( 41 )
 text = "Add Receiving Address"
 my_url = "/sign/multipay/"
 
@@ -1345,7 +1520,7 @@ margin_right = 83.0
 margin_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 34 )
+custom_fonts/font = SubResource( 41 )
 text = "Execute Payment"
 my_url = "/sign/pay/"
 
@@ -1526,7 +1701,7 @@ margin_right = -10.0
 margin_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_styles/bg = SubResource( 35 )
+custom_styles/bg = SubResource( 42 )
 scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1560,14 +1735,14 @@ margin_left = 37.0
 margin_top = 6.0
 margin_right = 75.0
 margin_bottom = 13.0
-custom_fonts/font = SubResource( 37 )
+custom_fonts/font = SubResource( 44 )
 text = "TX ID:"
 
 [node name="tx_id" parent="content_panel/tx_sign/main_fade_box/HBoxContainer" instance=ExtResource( 8 )]
 margin_left = 75.0
 margin_right = 583.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 37 )
+custom_fonts/font = SubResource( 44 )
 text = "6df522ea340320509d1a4b1e6cd4fb6450e1d76a1d03f7bf3cbf19d9215a500b"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="content_panel/tx_sign/main_fade_box"]
@@ -1590,14 +1765,14 @@ margin_left = 40.0
 margin_top = 6.0
 margin_right = 103.0
 margin_bottom = 13.0
-custom_fonts/font = SubResource( 37 )
+custom_fonts/font = SubResource( 44 )
 text = "Payed to: "
 
 [node name="pay_to" parent="content_panel/tx_sign/main_fade_box/HBoxContainer2" instance=ExtResource( 8 )]
 margin_left = 103.0
 margin_right = 648.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 37 )
+custom_fonts/font = SubResource( 44 )
 text = "CFFC9ADBE4F62C8F0D55D7AB945C925434AC1F4F51EA5E86BAB72148B31A10AE"
 
 [node name="instruction_button" parent="content_panel/tx_sign/main_fade_box" instance=ExtResource( 9 )]
@@ -1644,6 +1819,10 @@ my_url = "/tx/recv/"
 [connection signal="menu_button_pressed" from="content_panel/export/select_box/select_box/HBoxContainer/export_add" to="content_panel/export" method="_on_export_add_menu_button_pressed"]
 [connection signal="menu_button_pressed" from="content_panel/export/select_box/select_box/HBoxContainer/export_full" to="content_panel/export" method="_on_export_full_menu_button_pressed"]
 [connection signal="menu_button_pressed" from="content_panel/export/history_box/HBoxContainer/dat" to="content_panel/export" method="_on_dat_menu_button_pressed"]
+[connection signal="validator_button_pressed" from="content_panel/validator" to="." method="_on_validator_validator_button_pressed"]
+[connection signal="menu_button_pressed" from="content_panel/validator/main_fade_box3/buttons/all_diff" to="content_panel/validator" method="_on_all_diff_menu_button_pressed"]
+[connection signal="menu_button_pressed" from="content_panel/validator/main_fade_box3/buttons/all_same" to="content_panel/validator" method="_on_all_same_menu_button_pressed"]
+[connection signal="menu_button_pressed" from="content_panel/validator/main_fade_box3/buttons/copy" to="content_panel/validator" method="_on_copy_menu_button_pressed"]
 [connection signal="account_button_pressed" from="content_panel/wallet" to="." method="_on_wallet_account_button_pressed"]
 [connection signal="menu_button_pressed" from="content_panel/wallet/main_fade_box/accounts/ScrollContainer/accounts_list/key_box/key_box/generate_key" to="content_panel/wallet" method="_on_generate_key_menu_button_pressed"]
 [connection signal="account_button_pressed" from="content_panel/change_add" to="." method="_on_change_add_account_button_pressed"]

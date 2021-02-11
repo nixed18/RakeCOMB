@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scripts/ui/pieces/menu_Button.gd" type="Script" id=1]
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 20.0
 content_margin_right = 20.0
 content_margin_top = 10.0
@@ -14,7 +14,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 20
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.972549, 0.356863, 0.737255, 1 )
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -22,7 +22,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 20
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=3]
 content_margin_top = 5.0
 bg_color = Color( 0.96875, 0.261108, 0.698825, 1 )
 corner_radius_top_left = 10
@@ -31,7 +31,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 20
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=4]
 content_margin_left = 10.0
 content_margin_right = 10.0
 content_margin_top = 1.0
@@ -43,32 +43,32 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 20
 
-[sub_resource type="DynamicFontData" id=4]
+[sub_resource type="DynamicFontData" id=5]
 font_path = "res://fonts/Roboto-Bold.ttf"
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=6]
 size = 15
 use_mipmaps = true
 use_filter = true
-font_data = SubResource( 4 )
+font_data = SubResource( 5 )
 
-[sub_resource type="DynamicFontData" id=8]
+[sub_resource type="DynamicFontData" id=7]
 font_path = "res://fonts/Roboto-Medium.ttf"
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=8]
 size = 14
 use_mipmaps = true
 use_filter = true
-font_data = SubResource( 8 )
+font_data = SubResource( 7 )
 
-[sub_resource type="StyleBoxEmpty" id=10]
+[sub_resource type="StyleBoxEmpty" id=9]
 
 [node name="active_spend_box" type="PanelContainer"]
 visible = false
 margin_top = 67.0
 margin_right = 780.0
 margin_bottom = 131.0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 1 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 20.0
@@ -81,10 +81,10 @@ margin_right = 740.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 100, 0 )
 focus_mode = 0
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = SubResource( 7 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 1, 1, 1, 0.937255 )
 enabled_focus_mode = 0
 text = "View TX Data - F0D0B91BC81EE735D38C988E2A650526FD90C8D6B3972F9E3F9B5DFFED462179"
@@ -111,7 +111,7 @@ margin_left = 310.0
 margin_top = 5.0
 margin_right = 355.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 8 )
 text = "Status:"
 
 [node name="status_entry" type="Label" parent="VBoxContainer/VBoxContainer/status_box"]
@@ -119,7 +119,7 @@ margin_left = 359.0
 margin_top = 5.0
 margin_right = 429.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 8 )
 text = "Completed"
 
 [node name="source_box" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
@@ -134,7 +134,7 @@ margin_left = 70.0
 margin_top = 5.0
 margin_right = 173.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 8 )
 text = "Source Address:"
 
 [node name="source_entry" type="LineEdit" parent="VBoxContainer/VBoxContainer/source_box"]
@@ -144,8 +144,8 @@ margin_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
-custom_styles/read_only = SubResource( 10 )
-custom_fonts/font = SubResource( 9 )
+custom_styles/read_only = SubResource( 9 )
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color_uneditable = Color( 1, 1, 1, 1 )
 text = " bc1qrq2aer8xhd20e4rd6wwytv0s2uu3mmlav9c4rnc09r8ptm7yxm7sc5cn4y"
 align = 1
@@ -168,7 +168,7 @@ margin_left = 297.0
 margin_top = 5.0
 margin_right = 382.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 8 )
 text = "Block Height:"
 
 [node name="block_entry" type="LineEdit" parent="VBoxContainer/VBoxContainer/block_box"]
@@ -178,8 +178,8 @@ margin_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
-custom_styles/read_only = SubResource( 10 )
-custom_fonts/font = SubResource( 9 )
+custom_styles/read_only = SubResource( 9 )
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color_uneditable = Color( 1, 1, 1, 1 )
 text = "667925"
 align = 1

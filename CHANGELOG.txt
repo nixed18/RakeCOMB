@@ -1,0 +1,5 @@
+v0.3.0
+ - Implemented full Validator functionality.
+ - Labelled the import numbers
+ - Added debug window
+ - Minor optimization of stealth address building (shifted to perpetual entries)

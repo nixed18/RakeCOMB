@@ -1,6 +1,6 @@
 extends Control
 
-signal response(response)
+signal response(response, data)
 
 var file_button = preload("res://pieces/file_button.tscn")
 var f_ext = "dat"

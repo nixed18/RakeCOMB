@@ -76,6 +76,9 @@ func is_comb(string):
 	return true
 	
 func u16dectohex(i):
+	if typeof(i) == 4:
+		i = int(i)
+	
 	if i < 10:
 		return str(i)
 	elif i == 10:
@@ -111,37 +114,7 @@ func dec2hex_string(input):
 			
 	return output
 	pass
-	
-
-func strip_to_old(target, data):
-	var input = data
-	var output = String()
-	var i = 0
-	var ignore = true
-	var prev_chars = []
-	var target_found = false
-	while i < input.length():
-
-		if ignore:
-			#Check against target and prev_chars
-			prev_chars.append(input[i])
-			var x = 0
-			while x < prev_chars.size():
-				if prev_chars[x] == target[x]:
-					target_found = true
-
-				else:
-					prev_chars.clear()
-					target_found = false
-					break
-				x+=1
-			if target_found and x == target.length():
-				ignore = false
-		else:
-			output+= input[i]
-		i+=1
 		
-	return output
 	
 func strip_to(target, data):
 	var my_string = data
@@ -155,21 +128,23 @@ func strip_to(target, data):
 		#Check against target and prev_chars
 		prev_chars.append(my_string[prev_chars.size()])
 		var x = 0
+		#print(my_string)
 		#print([target, prev_chars])
 		while x < prev_chars.size():
 			if prev_chars[x] == target[x]:
 				target_found = true
 			else:
-				my_string.erase(0, x+1)
-				prev_chars.clear()
+				my_string.erase(0, 1)
+				prev_chars.remove(0)
 				target_found = false
 				break
 			x+=1
 		if target_found and x == target.length():
+			#print(my_string)
 			strip = false
 		i+=1
 	
-	my_string = my_string.lstrip(target)
+	my_string.erase(0, target.length())
 	
 	#print("!!!!!", my_string)
 	return my_string
@@ -287,7 +262,7 @@ func save_protocol(data):
 	
 	return values
 
-func validate_protocol(data):
+func validate_protocol_old(data):
 	if data[0] == "e":
 		print("Validate Error")
 		return null
@@ -332,6 +307,83 @@ func validate_protocol(data):
 	
 	#print(values)
 	return values
+		
+func validate_protocol(data):
+	if data.length() > 50000:
+		return ["OVERFLOW"]
+	if data[0] == "e":
+		debug.p("Validate Error")
+		return null
+	#[locator, block, show_allbuttons, [buttons_data], [row_data]]
+	#show_allbuttons: 0 = yes, 1 = no and throw, 2 = no
+	var values = [String(), String(), 0, [String(), String()], []]
+	var output = data
+
+	
+	if "You are checking" in output:
+		#Not finished
+		
+		#Block Number
+		output = strip_to("0 to ", output)
+		values[1] = pull_to("<", output)
+		
+		#Diff Buttons
+		if "is different</a>" in output:
+			values[2] = 0
+			output = strip_to("/utxo/bisect/", output)
+			values[3][0] = pull_to("\"", output)
+			output = strip_to("/utxo/bisect/", output)
+			values[3][1] = pull_to("\"", output)
+		elif "Problem appears " in output:
+			values[2] = 1
+		else:
+			values[2] = 2
+		#Rows
+		var i = 0
+		while i < 16:
+			var row_data = [0, String(), String(), String()]
+			row_data[0] = i
+			output = strip_to("Row ", output)
+			output = strip_to(" ", output)
+			#print([i, output])
+			if output[0] == "N":
+				row_data[1] = pull_to("<", output)
+			else:
+				row_data[1] = pull_to(" ", output)
+				output = strip_to(" ", output)
+				row_data[2] = pull_to(" ", output)
+			values[4].append(row_data)
+			
+			i+=1
+		
+		#Locator
+		#Have to do funky stuff here for some reason, otherwise it erases any "r"
+		output = strip_to("Locator i", output)
+		output.erase(0,2)
+		var locator = pull_to("<", output)
+		values[0] = locator
+		locator.erase(0,1)
+		for row_data in values[4]:
+			row_data[3] = locator
+
+	else:
+		#Finished
+		#values changd to [locator, string]
+		values = [String(), String()]
+		#get info
+		output = strip_to("</h2>", output)
+		
+		while "<br />" in output:
+			values[1]+=pull_to("<br />", output)
+			output = strip_to("<br />", output)
+			
+		#get locator
+		output = strip_to("locator ", output)
+		values[0] = pull_to(" and", output)
+		
+	return values
+	
+	
 		
 func shutdown_protocol(data):
 	if "Shutdown successfull" in data:
@@ -495,14 +547,19 @@ func stealth_protocol(data):
 	return(values)
 		
 func import_protocol(data):
-	#values = [String(), String(), String(), String(), String()]
-	var values = String()
+	var values = [String(), String(), String(), String(), String()]
 	var output = strip_to("<br />", data)
 	if output[0] == "{":
 		output = strip_to("{", output)
-		values = pull_to("}", output)
+		var i = 0
+		while i < 4:
+			values[i] = pull_to(" ",output)
+			output = strip_to(" ", output)
+			i+=1
+		values[4] = pull_to("}", output)
 	else:
-		print("Import Error: ", data)
+		debug.p(["Import Error: ", data])
+		values = ["0","0","0","0","0"]
 		
 	return values
 		 

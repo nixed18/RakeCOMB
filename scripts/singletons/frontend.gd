@@ -16,6 +16,5 @@ func go_to(url, ext=""):
 #		transition.to("/")
 
 func post_to(url, ext, content):
-	#print(url,ext,content)
 	transition.post(url, ext, content)
 	

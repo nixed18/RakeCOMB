@@ -14,13 +14,14 @@ func to(url, ext):
 	#popups.open("load", "LOADING")
 	#yield(get_tree().create_timer(0.01), "timeout")
 	
+	debug.p(["REQUEST SENT", url, ext])
 	
 	httpman.send_request(url, ext)
 	data = yield(respman, "response_processed")
 	if typeof(data) == 17:
 		data = yield(data, "completed")
 	#print(data)
-		
+	
 	#Wait
 	lock_screen(false)
 	#popups.close()

@@ -1,5 +1,7 @@
 extends PanelContainer
 
+var normal_panel = preload("res://pieces/account_entry_base_panel.tres")
+var normal_colour = Color(1, 1, 1, 0.937255)
 var dark_panel = preload("res://pieces/account_entry_dark_panel.tres")
 var dark_colour = Color( 0.88, 0.88, 0.88, 0.5 )
 var less_dark = Color( 1.0, 1.0, 1.0, 0.7 )
@@ -163,8 +165,12 @@ func burn():
 	block_entry.set("custom_colors/font_color_uneditable", dark_colour)
 
 #[comb_address, balance, mine_address, sweep_link]
+
 func setup_for_stealth(content):
-	mine_box.show()
+	if content == null:
+		hide()
+		return
+	reset_stealth()
 	pubkey_entry.text = content[0]
 	balance_entry.text = content[1]+" COMB"
 	if content[2] != "":
@@ -179,6 +185,20 @@ func setup_for_stealth(content):
 	hide()
 	show()
 	pass
+	
+func reset_stealth():
+	mine_box.show()
+	mine_label.show()
+	mine_entry.show()
+	sweep_button.show()
+	sweep = true
+	mine = true
+	set("custom_styles/panel", normal_panel)
+	pubkey_entry.set("custom_colors/font_color_uneditable", normal_colour)
+	balance_entry.set("custom_colors/font_color_uneditable", normal_colour)
+	hide()
+	show()
+	
 	
 func burn_full():
 	mine_box.hide()

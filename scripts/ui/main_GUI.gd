@@ -79,4 +79,6 @@ func _on_multipay_account_button_pressed(url, ext):
 func _on_export_export_requested(url, ext):
 	frontend.go_to(url, ext)
 
-
+func _on_validator_validator_button_pressed(url, ext):
+	frontend.go_to(url, ext)
+	print([url, ext])
